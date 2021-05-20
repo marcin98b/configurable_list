@@ -29,7 +29,7 @@
                 <form method="POST" action="{{route('listCreate')}}">
                 @csrf 
 
-                    <input id="name" name="name" placeholder="Dodaj listę ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
+                    <input id="name" autofocus name="name" placeholder="Dodaj listę ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
                     <input value="+" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
 
                 </form>
@@ -47,7 +47,7 @@
 
                 @foreach ($lists as $list)
                     
-                    <div class="clearfix h-24 p-6 width-100 bg-white border-b border-gray-200">
+                    <div class="clearfix h-24 p-4 width-100 bg-white border-b border-gray-200">
                         <div class="float-left">
                             <h1 class="text-lg">
                                 <a class="hover:text-blue-700" href = "{{route('listShow', $list->id)}}">
@@ -59,10 +59,11 @@
                                 </a>
                                 
                             </h1>
-                            <p class="text-xs text-gray-400	">{{$list->created_at}}</p>
+                            <p class="text-xs text-gray-400	">Data utworzenia: {{$list->created_at}}</p>
+                            <p class="text-xs text-gray-400	">Zaznaczone produkty: {{count($list->products->where('ticked'))}}/{{count($list->products)}}</p>
                      </div>
 
-                      <div class="float-right">
+                      <div class="py-3 float-right">
                         
 
                         <form style="margin:0px; padding:0px; display:inline;" action="{{route('listDuplicate', $list->id)}}" method="POST">

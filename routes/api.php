@@ -61,18 +61,15 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::DELETE('/lists/{shop_id}/categories/{category_id}', [CategoryController::class, 'list_categoryDelete']);
     Route::POST('/lists/{id}/categories/updatePosition/{arr}', [CategoryController::class, 'list_categoryUpdatePosition']);
     
-    
-// TO_DO
-// LISTA
-// - główna funkcja - dodawanie produktów wg. kategorii
-// - mozliwosc udostepniania list (ustalanie praw)
-//
-//
-// PRODUKT
-// - dodawanie niestandardowych produktow
-// - dodawanie zdjecia (pozniej)
-//
-// SORTOWANIE
-// - sortowanie produktow/list/sklepow
+        
+    //Produkty
+    //-----------------------------------------------------------------------------
+
+    Route::GET('/lists/{id}/products', [ProductController::class, 'show']);   
+    Route::POST('/lists/{id}/addproduct', [ProductController::class, 'create']);
+    Route::PUT('/lists/{id}/products/{product_id}', [ProductController::class, 'update']);
+    Route::DELETE('/lists/{id}/products/{product_id}', [ProductController::class, 'delete']);
+
+
 
 });

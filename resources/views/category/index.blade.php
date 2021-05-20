@@ -35,7 +35,7 @@
                 <form method="POST" action="{{route('shop_categoryCreate', $shop->id)}}">
                 @csrf 
 
-                    <input id="name" required name="name" placeholder="Dodaj kategorię ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
+                    <input id="name" autofocus required name="name" placeholder="Dodaj kategorię ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
                     <input value="+" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                     
                 </form>
@@ -139,6 +139,9 @@ function getOrder() {
     for(var i = 0; i< elements.length; i++) {
         arr[i] = elements[i].id;
     }
+
+
+//axios w przyszlosci
 
     if(!arr.length) window.location("/shops/"+{{$shop->id}}+"/categories/");
 

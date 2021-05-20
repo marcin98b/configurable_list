@@ -64,6 +64,9 @@ Route::POST('/lists/{id}/categories/create', [CategoryController::class, 'list_c
 Route::DELETE('/lists/{id}/categories/{category_id}', [CategoryController::class, 'list_categoryDelete'])->name('list_categoryDelete');
 Route::POST('/lists/{id}/categories/updatePosition/{arr}', [CategoryController::class, 'list_categoryUpdatePosition'])->name('list_categoryUpdatePosition');
 
+
+
+//Produkty
 //-----------------------------------------------------------------------------
 
 Route::POST('/lists/{id}/addproduct', [ProductController::class, 'create'])->name('productCreate');

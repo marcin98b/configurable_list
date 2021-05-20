@@ -13,7 +13,7 @@
                     @csrf
                     @method('GET')
                         <button 
-                        class="py-1 px-3 rounded bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                        class="py-1 px-3 rounded bg-gray-300 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                             Ustawienia sklepu
                         </button>
                 </form>  

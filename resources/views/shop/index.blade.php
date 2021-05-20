@@ -29,7 +29,7 @@
                 <form method="POST" action="{{route('shopCreate')}}">
                 @csrf 
 
-                    <input id="name" required name="name" placeholder="Dodaj sklep ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
+                    <input id="name" autofocus required name="name" placeholder="Dodaj sklep ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
                     <input value="+" type="submit" class="py-1 px-3 bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
 
                 </form>

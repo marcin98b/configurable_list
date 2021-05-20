@@ -9,6 +9,11 @@ class Product extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = [
+        'ticked'
+
+    ];
     /**
      * user-products (1-n) relationship
      */
