@@ -54,21 +54,19 @@
 
 
 
-            
-            <!-- Dodawanie produktow -->
-
-              <!--dorobić-->
-            @if($list->shop_id)
-
-                @foreach ($list->shop->shopCategories as $shopCategory)
-                {{$shopCategory->name}}
-                @endforeach
-
-            @endif
-
             <div class="pb-5 flex justify-end">
                 <form method="POST" action="{{route('productCreate', $list->id)}}">
                 @csrf 
+
+                @if($list->shop_id && !$list->shop->shopCategories->isEmpty())
+                    <select class="select py-1 mx-1 border border-transparent focus:outline-none focus:ring-2 " style="height:20" name="shopCategory">
+                       
+                @foreach ($list->shop->shopCategories->sortBy('order_position') as $shopCategory)
+                    <option @if(session('lastCategory') == $shopCategory->id) selected @endif value="{{$shopCategory->id}}">{{$shopCategory->name}}</option>
+                @endforeach     
+                    </select>
+
+                @endif
 
                     <input id="name" autofocus required name="name" placeholder="Dodaj produkt ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
                     <input value="+" type="submit" class="py-1 px-3 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
@@ -88,11 +86,12 @@
                      
                     <div id="products" >
 
+                    @if(!$list->shop_id || $list->shop->shopCategories->isEmpty())    
+                   
+
+                    @if(count($list->products)) <div class="pb-1 text-center bg-blue-200">Nieskategoryzowane</div> @endif
+
                         @foreach($list->products as $product)
-
-
-
-
 
                         <div class="product clearfix h-24 p-6 width-100 bg-white border-b border-gray-200">
                             <div class="float-left">
@@ -119,7 +118,83 @@
                         </div>
 
                         @endforeach
+                
+                    @else
 
+    
+                        @foreach($list->shop->shopCategories->sortBy('order_position') as $shopCategory)
+
+                        @if(count($list->products->where('shop_category_id', $shopCategory->id))) <div class="pb-1 text-center bg-blue-200">  {{$shopCategory->name}} </div> @endif 
+
+                            @foreach($shopCategory->products as $product)
+
+                                @if($list->id == $product->list_id)
+
+                                <div class="product clearfix h-24 p-6 width-100 bg-white border-b border-gray-200">
+                                    <div class="float-left">
+                                        
+
+                                        <h1 class="text-lg">
+                                            <input  onchange='handleChange(this, {{$loop->index}});' name="checkbox_{{$product->id}}" value="1" class="product_checkbox w-5 h-5 mr-2" @if($product->ticked) checked @endif type="checkbox"/>
+                                        <p class="inline">{{$product->name}}</p>
+                                            
+                                        </h1>
+
+                                </div>
+                                        
+
+                                <div class="float-right">
+                                
+
+                                            <button form="form_delete" onclick="form_delete({{$list->id}},{{$product->id}})" class="py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                                                X
+                                            </button>
+
+
+                                </div>
+                                </div>
+
+                                @endif
+
+                            @endforeach
+
+
+
+                        @endforeach                    
+
+                
+                        <!-- nieskategoryzowane -->
+                        @if(count($list->products->where('shop_category_id', null))) <div class="pb-1 text-center bg-blue-200">Nieskategoryzowane</div> @endif    
+
+                        @foreach($list->products->where('shop_category_id', null) as $product)
+                
+                            <div class="product clearfix h-24 p-6 width-100 bg-white border-b border-gray-200">
+                                <div class="float-left">
+                                    
+
+                                    <h1 class="text-lg">
+                                        <input  onchange='handleChange(this, {{$loop->index}});' name="checkbox_{{$product->id}}" value="1" class="product_checkbox w-5 h-5 mr-2" @if($product->ticked) checked @endif type="checkbox"/>
+                                    <p class="inline">{{$product->name}}</p>
+                                        
+                                    </h1>
+
+                            </div>
+                                    
+
+                            <div class="float-right">
+                            
+
+                                        <button form="form_delete" onclick="form_delete({{$list->id}},{{$product->id}})" class="py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                                            X
+                                        </button>
+
+
+                            </div>
+                            </div>
+                        @endforeach
+
+
+                    @endif
                        </form>
                     </div>
 
@@ -164,34 +239,34 @@
 <script>
 
 
-var products = document.getElementsByClassName('product_checkbox');
-for (var i = 0; i < products.length; i++) {
-    if(products[i].checked == true) 
-    {
-        document.getElementsByClassName('product')[i].style.backgroundColor="#edffee";
-        document.getElementsByClassName('product')[i].style.opacity="0.7";
+// var products = document.getElementsByClassName('product_checkbox');
+// for (var i = 0; i < products.length; i++) {
+//     if(products[i].checked == true) 
+//     {
+//         document.getElementsByClassName('product')[i].style.backgroundColor="#edffee";
+//         document.getElementsByClassName('product')[i].style.opacity="0.7";
 
-    }
-    else 
-    {
-        document.getElementsByClassName('product')[i].style.opacity="1";
-        document.getElementsByClassName('product')[i].style.backgroundColor="white";
+//     }
+//     else 
+//     {
+//         document.getElementsByClassName('product')[i].style.opacity="1";
+//         document.getElementsByClassName('product')[i].style.backgroundColor="white";
     
-    }
+//     }
 
-}
+// }
 
 
-function handleChange(checkbox, i) {
-    if(checkbox.checked == true){
-        document.getElementsByClassName('product')[i].style.backgroundColor="#edffee";
-        document.getElementsByClassName('product')[i].style.opacity="0.7";
-    }
-    else{
-        document.getElementsByClassName('product')[i].style.opacity="1";
-        document.getElementsByClassName('product')[i].style.backgroundColor="white";
-           }
-}
+// function handleChange(checkbox, i) {
+//     if(checkbox.checked == true){
+//         document.getElementsByClassName('product')[i].style.backgroundColor="#edffee";
+//         document.getElementsByClassName('product')[i].style.opacity="0.7";
+//     }
+//     else{
+//         document.getElementsByClassName('product')[i].style.opacity="1";
+//         document.getElementsByClassName('product')[i].style.backgroundColor="white";
+//            }
+// }
 
 
 

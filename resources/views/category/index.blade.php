@@ -45,7 +45,7 @@
 
             <div class="container max-w-7xl mx-auto ">
 
-                @foreach ($shopCategories as $shopCategory)
+                @foreach ($shopCategories->sortBy('order_position') as $shopCategory)
                      
                     <div id="{{$shopCategory->id}}" class="draggable" draggable="true">
                         <div class="clearfix h-24 p-6 width-100 bg-white border-b border-gray-200">

@@ -68,7 +68,7 @@ class CategoryController extends Controller
             for($i = 0; $i<sizeof($array); $i++)
             {
                 $shopCategory = shopCategory::find($array[$i]);
-                $shopCategory -> order_position = sizeof($array)-$i;
+                $shopCategory -> order_position = $i+1;
                 $shopCategory -> save();
             }
 

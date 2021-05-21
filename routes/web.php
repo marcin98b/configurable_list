@@ -59,10 +59,10 @@ Route::POST('/shops/{id}/categories/updatePosition/{arr}', [CategoryController::
 
 
     //Definicja kategorii  oraz kolejności dla list
-Route::GET('/lists/{id}/categories', [CategoryController::class, 'list_categoryIndex'])->name('list_categoryIndex');
-Route::POST('/lists/{id}/categories/create', [CategoryController::class, 'list_categoryCreate'])->name('list_categoryCreate');
-Route::DELETE('/lists/{id}/categories/{category_id}', [CategoryController::class, 'list_categoryDelete'])->name('list_categoryDelete');
-Route::POST('/lists/{id}/categories/updatePosition/{arr}', [CategoryController::class, 'list_categoryUpdatePosition'])->name('list_categoryUpdatePosition');
+// Route::GET('/lists/{id}/categories', [CategoryController::class, 'list_categoryIndex'])->name('list_categoryIndex');
+// Route::POST('/lists/{id}/categories/create', [CategoryController::class, 'list_categoryCreate'])->name('list_categoryCreate');
+// Route::DELETE('/lists/{id}/categories/{category_id}', [CategoryController::class, 'list_categoryDelete'])->name('list_categoryDelete');
+// Route::POST('/lists/{id}/categories/updatePosition/{arr}', [CategoryController::class, 'list_categoryUpdatePosition'])->name('list_categoryUpdatePosition');
 
 
 
