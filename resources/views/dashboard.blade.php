@@ -60,7 +60,13 @@
                                 
                             </h1>
                             <p class="text-xs text-gray-400	">Data utworzenia: {{$list->created_at}}</p>
-                            <p class="text-xs text-gray-400	">Zaznaczone produkty: {{count($list->products->where('ticked'))}}/{{count($list->products)}}</p>
+                            <p class="text-xs text-gray-400	">Zaznaczone produkty: 
+                                @if(count($list->products)) 
+                                    {{count($list->products->where('ticked'))}}/{{count($list->products)}} 
+                                @else
+                                    - / -
+                                @endif
+                            </p>
                      </div>
 
                       <div class="py-3 float-right">

@@ -38,7 +38,7 @@ class Shop extends Model
      */
     public function shopCategories() {
 
-        return $this->hasMany(shopCategory::class);
+        return $this->hasMany(shopCategory::class)->orderBy('order_position');
     }
 
 

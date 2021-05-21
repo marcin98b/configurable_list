@@ -75,4 +75,14 @@ class User extends Authenticatable
 
         return $this->hasMany(Product::class);
     }
+
+
+    /**
+     * user-custom_products (1-n) relationship
+     */
+    public function customProducts() {
+
+        return $this->hasMany(customProduct::class);
+    }
+
 }

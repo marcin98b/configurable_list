@@ -35,10 +35,10 @@ class List_ extends Model
     /*
     * list-listCategories (1-n) relationship
     */
-    public function listCategories() {
+    // public function listCategories() {
 
-        return $this->hasMany(listCategory::class, 'list_id');
-    }
+    //     return $this->hasMany(listCategory::class, 'list_id');
+    // }
 
     /*
     * list-products (1-n) relationship

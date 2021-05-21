@@ -41,12 +41,23 @@ class Product extends Model
 
 
     /**
-     * listCategories - Product (1-n) relationship
+     * custom_product - products (1-n) relationship
      */
-    public function listCategory() {
 
-        return $this->belongsTo(listCategory::class);
-    }   
+    public function customProduct() {
+
+        return $this->belongsTo(customProduct::class);
+
+    }
+
+
+    // /**
+    //  * listCategories - Product (1-n) relationship
+    //  */
+    // public function listCategory() {
+
+    //     return $this->belongsTo(listCategory::class);
+    // }   
 
 
     /*

@@ -19,22 +19,22 @@ class listCategory extends Model
     ];
 
 
-    /*
-    * list-listCategories (1-n) relationship
-    */
-    public function list() {
+    // /*
+    // * list-listCategories (1-n) relationship
+    // */
+    // public function list() {
 
-        return $this->belongsTo(List_::class);
-    }
+    //     return $this->belongsTo(List_::class);
+    // }
 
 
-    /**
-     * shopCategories - Product (1-n) relationship
-     */
-    public function products() {
+    // /**
+    //  * shopCategories - Product (1-n) relationship
+    //  */
+    // public function products() {
 
-        return $this->hasMany(Product::class);
-    }
+    //     return $this->hasMany(Product::class);
+    // }
 
 
 
