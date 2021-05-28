@@ -17,7 +17,7 @@ class CreateListTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->string('name')->nullable();
-            $table->boolean('is_public')->default(FALSE);
+            $table->string('share_key', 16)->nullable();
             $table->foreignId('shop_id')->nullable()->constrained()->onDelete('SET NULL');
             $table->timestamps();
         });

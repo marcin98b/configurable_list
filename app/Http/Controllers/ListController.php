@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Auth;
 use App\Models\List_;
 use App\Models\Shop;
 use App\Models\Product;
+use App\Models\shopCategory;
 
 class ListController extends Controller
 {
@@ -58,6 +59,103 @@ class ListController extends Controller
 
     }
 
+    public function showShared($share_key) {
+
+        $list = List_::firstWhere('share_key', $share_key);
+
+        if($list) {
+        return view('list.showShared', [
+            'list' => $list,
+
+        ]);
+        }
+        else return redirect('dashboard');
+
+    }
+
+    public function createShared($share_key) {
+
+
+        if(request('shop_id') != 'notAssigned') //dodawanie dla sklepu
+        {
+            $listToCopy = List_::firstWhere('share_key', $share_key);
+
+            $newList = $listToCopy->replicate();
+            $newList -> share_key = null;
+            $newList -> shop_id = request('shop_id');
+            $newList->save();
+
+            //kopiowanie produktow skategoryzowanych
+            $categories = $listToCopy->shop->shopCategories;
+            foreach($categories as $category)
+            {
+
+                //sprawdzenie czy wystepuje kategoria o takie samej nazwie - uniemożliwienie duplikacji kategorii
+                $temp = 0;
+
+                foreach(Shop::find(request('shop_id'))->shopCategories as $userCategory)
+                {
+                    if($userCategory->name == $category->name)
+                    {
+                        $temp = $userCategory->id;
+                        break;
+                    }
+
+                }
+                //jesli nie wystepuje tworzymy nowa
+                if($temp == 0)
+                {
+                $newCategory = $category -> replicate();
+                $newCategory -> shop_id = request('shop_id');
+                $newCategory -> save();
+                }
+
+
+                //OK
+                foreach($listToCopy->products->where('shop_category_id', $category->id) as $product)
+                {
+                    $newProduct = $product -> replicate();
+                    $newProduct -> list_id = $newList->id;
+                    if($temp) $newProduct -> shop_category_id = $temp;
+                    else $newProduct -> shop_category_id = $newCategory->id;
+                    $newProduct -> save();
+                }
+
+            }
+
+            //nieskategoryzowane produkty
+            foreach($listToCopy->products->where('shop_category_id', null) as $product)
+            {
+                $newProduct = $product -> replicate();
+                $newProduct -> list_id = $newList->id;
+                $newProduct -> save();
+
+            }
+
+        }
+        else //dodawanie bez sklepu
+        {
+            $listToCopy = List_::firstWhere('share_key', $share_key);
+            $newList = $listToCopy->replicate();
+            $newList -> share_key = null;
+            $newList -> shop_id = null;
+            $newList->save();
+
+            foreach($listToCopy->products as $product)
+            {
+                $newProduct=$product->replicate();
+                $newProduct->list_id = $newList->id;
+                $newProduct->shop_category_id = null;
+                $newProduct->save();
+
+            }
+
+        }
+
+        return redirect('dashboard')->with('message', 'Dziala');
+
+    }
+
     //dodawanie listy i przechowywanie w bazie
     public function create() {
     
@@ -88,17 +186,20 @@ class ListController extends Controller
         }
     }
 
-    //edytuj nazwe
+    //edytuj
     public function edit($id) {
     
         $list=List_::find($id);
-        $list -> name = request('name');
-        $list -> shop_id = request('shop_id');
+        if(request('name')) $list -> name = request('name');
+        if(request('shop_id')) $list -> shop_id = request('shop_id');
+        //share button
+        if(request('share')) $list -> share_key = Str::random(16);
+        else $list -> share_key = null;
+
         $list -> save();
 
-        return view('list.show', [
-            'list' => $list,
-            ]);
+        return redirect(route('listEditView', $id))
+        ->with('message', 'Pomyślnie edytowano listę');
 
     }
 
@@ -108,7 +209,7 @@ class ListController extends Controller
     
 
         $list=List_::find($id);
-        $shops = Shop::all();
+        $shops = Auth::user()->shops;
 
         return view('list.edit', [
             'list' => $list,

@@ -24,6 +24,8 @@ Route::get('/', function () {
 Route::GET('/dashboard', [ListController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::POST('/lists/create', [ListController::class, 'create'])->name('listCreate');
 Route::POST('/lists/{id}/duplicate', [ListController::class, 'duplicate'])->name('listDuplicate');
+Route::GET('/lists/shared/{share_key}', [ListController::class, 'showShared'])->name('listSharedView'); //nowe
+Route::POST('/lists/shared/{share_key}', [ListController::class, 'createShared'])->name('listCreateShared'); //nowe
 Route::POST('/lists/{id}', [ListController::class, 'edit'])->name('listEdit');
 Route::GET('/lists/{id}/edit', [ListController::class, 'editView'])->name('listEditView');
 Route::GET('/lists/{id}', [ListController::class, 'show'])->name('listShow');
@@ -58,14 +60,6 @@ Route::POST('/shops/{id}/categories/updatePosition/{arr}', [CategoryController::
 
 
 
-    //Definicja kategorii  oraz kolejności dla list
-// Route::GET('/lists/{id}/categories', [CategoryController::class, 'list_categoryIndex'])->name('list_categoryIndex');
-// Route::POST('/lists/{id}/categories/create', [CategoryController::class, 'list_categoryCreate'])->name('list_categoryCreate');
-// Route::DELETE('/lists/{id}/categories/{category_id}', [CategoryController::class, 'list_categoryDelete'])->name('list_categoryDelete');
-// Route::POST('/lists/{id}/categories/updatePosition/{arr}', [CategoryController::class, 'list_categoryUpdatePosition'])->name('list_categoryUpdatePosition');
-
-
-
 //Produkty
 //-----------------------------------------------------------------------------
 
@@ -76,12 +70,12 @@ Route::DELETE('/lists/{id}/products/{product_id}', [ProductController::class, 'd
 
 // TO_DO
 // LISTA
-// - główna funkcja - dodawanie produktów wg. kategorii
 // - mozliwosc udostepniania list (ustalanie praw)
-//
+// - WEB - OK
+// - API - do zrobienia
 //
 // PRODUKT
-// - niestandardowe produkty
+// - niestandardowe produkty (trzecia zakladka)
 // - dodawanie zdjecia (pozniej)
 //
 // SORTOWANIE

@@ -53,15 +53,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::DELETE('/shops/{shop_id}/categories/{category_id}', [CategoryController::class, 'shop_categoryDelete']);
     Route::POST('/shops/{id}/categories/updatePosition/{arr}', [CategoryController::class, 'shop_categoryUpdatePosition']);
 
-
-    //Kategorie - dla list
-    Route::GET('/lists/{shop_id}/categories', [CategoryController::class, 'list_categoryIndex']);
-    Route::POST('/lists/{shop_id}/categories/create', [CategoryController::class, 'list_categoryCreate']);
-    Route::PUT('/lists/{shop_id}/categories/{category_id}', [CategoryController::class, 'list_categoryUpdate']);
-    Route::DELETE('/lists/{shop_id}/categories/{category_id}', [CategoryController::class, 'list_categoryDelete']);
-    Route::POST('/lists/{id}/categories/updatePosition/{arr}', [CategoryController::class, 'list_categoryUpdatePosition']);
-    
-        
     //Produkty
     //-----------------------------------------------------------------------------
 

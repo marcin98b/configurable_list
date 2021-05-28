@@ -52,14 +52,6 @@ class User extends Authenticatable
 
     
     /**
-     * user-categories (1-n) relationship
-     */
-    public function categories() {
-
-        return $this->hasMany(Category::class);
-    }
-
-    /**
      * user-lists (1-n) relationship
      */
     public function lists() {

@@ -39,7 +39,7 @@ class ProductController extends Controller
 
         if($product->list_id == $id) $product -> delete();
 
-        return redirect((route('listShow', $id)));
+        return redirect((route('listShow', $id)))->with('lastCategory', request('shopCategory'));
 
     }
 

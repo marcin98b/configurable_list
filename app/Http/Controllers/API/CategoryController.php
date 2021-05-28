@@ -73,67 +73,6 @@ class CategoryController extends Controller
         
     }
 
- //Kategorie - dla list  
- //------------------------------------------------------------------------------------------ 
-
- public function list_categoryIndex($id) {
-
-    $list = List_::find($id);
-    return $list->listCategories()->orderBy('order_position', 'desc')->get();
-
-}
-
-public function list_categoryCreate($id, Request $request) {
-
-    $list = List_::find($id);
-    $listCategories = $list -> listCategories;
-
-    $request->request->add([
-        //request('name')
-        'order_position' => $listCategories->max('order_position')+1,
-        'list_id' => $list->id
-
-        ]);
-   
-   
-    return listCategory::create($request->all());
-
-}
-
-public function list_categoryUpdate($id, $category_id, Request $request) {
-
-    $list = List_::find($id);
-    $listCategory = $list->listCategories()->find($category_id);
-    $listCategory -> update($request->all());
-    return $listCategory;
-
-}
-
-public function list_categoryDelete($id, $category_id) {
-
-    $list = List_::find($id);
-    $listCategory = $list->listCategories()->find($category_id);
-    return $listCategory->delete();
-
-}
-
-
-public function list_categoryUpdatePosition($id, $arr) {
-
-    $list = List_::find($id);
-    $array = explode(",", $arr);
-
-    for($i = 0; $i<sizeof($array); $i++)
-    {
-        $listCategory = listCategory::find($array[$i]);
-        $listCategory -> order_position = sizeof($array)-$i;
-        $listCategory -> save();
-    }
-
-    return $list->listCategories()->orderBy('order_position', 'desc')->get();
-    
-}
-
 
 
 

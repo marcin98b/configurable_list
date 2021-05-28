@@ -39,6 +39,7 @@
     <div class="max-w-7xl mx-auto sm:px-8 lg:px-8">
 
 
+
             <!-- wiadomosc -->
             @if(session('message'))
             <div class="mb-3 bg-teal-300 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
@@ -63,7 +64,8 @@
                        
                 @foreach ($list->shop->shopCategories->sortBy('order_position') as $shopCategory)
                     <option @if(session('lastCategory') == $shopCategory->id) selected @endif value="{{$shopCategory->id}}">{{$shopCategory->name}}</option>
-                @endforeach     
+                @endforeach    
+                    <option class="text-red-500" value="">[Brak kategorii]</option>
                     </select>
 
                 @endif
@@ -108,7 +110,6 @@
 
                         <div class="float-right">
                          
-
                                     <button form="form_delete" onclick="form_delete({{$list->id}},{{$product->id}})" class="py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                                         X
                                     </button>
@@ -145,7 +146,7 @@
 
                                 <div class="float-right">
                                 
-
+                                            <input form="form_delete" name="shopCategory" value="{{$shopCategory->id}}" type="hidden"/>
                                             <button form="form_delete" onclick="form_delete({{$list->id}},{{$product->id}})" class="py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                                                 X
                                             </button>
@@ -183,7 +184,7 @@
 
                             <div class="float-right">
                             
-
+                                        <input form="form_delete" name="shopCategory" value="{{$shopCategory->id}}" type="hidden"/>
                                         <button form="form_delete" onclick="form_delete({{$list->id}},{{$product->id}})" class="py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                                             X
                                         </button>

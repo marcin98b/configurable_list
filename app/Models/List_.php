@@ -13,7 +13,8 @@ class List_ extends Model
     protected $fillable = [
         'name',
         'user_id',
-        'shop_id'
+        'shop_id',
+        'share_key'
 
     ];
     /**
