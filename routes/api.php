@@ -32,7 +32,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::GET('/lists/{id}', [ListController::class, 'show']);
     Route::PUT('/lists/{id}', [ListController::class, 'update']);
     Route::DELETE('/lists/{id}', [ListController::class, 'delete']);
-
+    Route::GET('/lists/shared/{share_key}', [ListController::class, 'showShared']); //nowe
+    Route::POST('/lists/shared/{share_key}', [ListController::class, 'createShared']); //nowe
 
     //Sklepy
     Route::GET('/shops', [ShopController::class, 'index']);

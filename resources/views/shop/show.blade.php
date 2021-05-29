@@ -31,7 +31,7 @@
                 </div>
                 @endif
 
-                @foreach ($shop->lists as $list)
+                @foreach ($shop->lists->sortByDesc('created_at') as $list)
                     <div class="clearfix h-24 p-4 width-100 bg-white border-b border-gray-200">
                         <div class="float-left">
                             <h1 class="text-lg">

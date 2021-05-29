@@ -72,7 +72,7 @@ Route::DELETE('/lists/{id}/products/{product_id}', [ProductController::class, 'd
 // LISTA
 // - mozliwosc udostepniania list (ustalanie praw)
 // - WEB - OK
-// - API - do zrobienia
+// - API - OK
 //
 // PRODUKT
 // - niestandardowe produkty (trzecia zakladka)

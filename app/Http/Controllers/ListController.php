@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Auth;
 use App\Models\List_;
+use App\Models\User;
 use App\Models\Shop;
 use App\Models\Product;
 use App\Models\shopCategory;
@@ -81,6 +82,7 @@ class ListController extends Controller
             $listToCopy = List_::firstWhere('share_key', $share_key);
 
             $newList = $listToCopy->replicate();
+            $newList -> name = $listToCopy->name . ' (autorstwa '.User::find($listToCopy->user_id)->name. ')';
             $newList -> share_key = null;
             $newList -> shop_id = request('shop_id');
             $newList->save();
@@ -137,6 +139,7 @@ class ListController extends Controller
         {
             $listToCopy = List_::firstWhere('share_key', $share_key);
             $newList = $listToCopy->replicate();
+            $newList -> name = $listToCopy->name . ' (autorstwa '.User::find($listToCopy->user_id)->name. ')';
             $newList -> share_key = null;
             $newList -> shop_id = null;
             $newList->save();
