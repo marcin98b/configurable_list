@@ -152,6 +152,7 @@ class ListController extends Controller
 
         $list = List_::findOrFail($id);
         $newList = $list->replicate();
+        $newList -> share_key = null;
         $newList->save();
 
 
@@ -162,8 +163,6 @@ class ListController extends Controller
             $newProduct -> list_id = $newList->id;
             $newProduct -> save();
         }
-        //DOPISAĆ
-        //przeniesienie produktow jesli sa
         
         return $newList;
 

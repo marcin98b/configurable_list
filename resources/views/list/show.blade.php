@@ -70,7 +70,14 @@
 
                 @endif
 
-                    <input id="name" autofocus required name="name" placeholder="Dodaj produkt ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
+                    <input list="nameList" autocomplete="off" id="name" autofocus required name="name" placeholder="Dodaj produkt ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
+                    <datalist id="nameList">
+                        <option value="Edge">
+                        <option value="Firefox">
+                        <option value="Chrome">
+                        <option value="Opera">
+                        <option value="Safari">
+                      </datalist>
                     <input value="+" type="submit" class="py-1 px-3 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                     
                 </form>
@@ -256,19 +263,6 @@
 //     }
 
 // }
-
-
-// function handleChange(checkbox, i) {
-//     if(checkbox.checked == true){
-//         document.getElementsByClassName('product')[i].style.backgroundColor="#edffee";
-//         document.getElementsByClassName('product')[i].style.opacity="0.7";
-//     }
-//     else{
-//         document.getElementsByClassName('product')[i].style.opacity="1";
-//         document.getElementsByClassName('product')[i].style.backgroundColor="white";
-//            }
-// }
-
 
 
 function form_delete($id, $product_id) {

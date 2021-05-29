@@ -67,12 +67,13 @@ Route::POST('/lists/{id}/addproduct', [ProductController::class, 'create'])->nam
 Route::POST('/lists/{id}/products/update', [ProductController::class, 'update'])->name('productUpdate');
 Route::DELETE('/lists/{id}/products/{product_id}', [ProductController::class, 'delete'])->name('productDelete');
 
+//Produkty niestandardowe
+
+
+
+
 
 // TO_DO
-// LISTA
-// - mozliwosc udostepniania list (ustalanie praw)
-// - WEB - OK
-// - API - OK
 //
 // PRODUKT
 // - niestandardowe produkty (trzecia zakladka)

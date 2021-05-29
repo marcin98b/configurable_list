@@ -226,6 +226,7 @@ class ListController extends Controller
 
         $list = List_::findOrFail($id);
         $newList = $list->replicate();
+        $newList -> share_key = null;
         $newList->save();
 
 

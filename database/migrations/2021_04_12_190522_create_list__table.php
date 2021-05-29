@@ -15,7 +15,7 @@ class CreateListTable extends Migration
     {
         Schema::create('lists', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->string('name')->nullable();
             $table->string('share_key', 16)->nullable();
             $table->foreignId('shop_id')->nullable()->constrained()->onDelete('SET NULL');
