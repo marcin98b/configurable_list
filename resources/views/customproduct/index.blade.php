@@ -35,7 +35,7 @@
                 </form>
             </div>
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
     
          <!-- Generowanie dostępnych sklepów użytkownika  -->
                 @if ($customProducts->isEmpty())
@@ -47,25 +47,25 @@
 
                 @foreach ($customProducts as $customProduct)
                     
-                    <div class="flex clearfix h-36 p-6 width-100 bg-white border-b border-gray-200">
+                    <div class="flex clearfix h-36 width-100 bg-white border-b border-gray-200">
                     
                     <div class="flex-grow">
 
                             <div class="flex">
                                 <div class="flex-none">
                                 @if(!$customProduct->file_path)
-                                  <img src="https://via.placeholder.com/140x100.png?text=Brak+zdjecia"/>
+                                  <img class="h-36 w-full bg-cover" src="https://via.placeholder.com/140x140.png?text=Brak+zdjecia"/>
                                 @else
                                     <!-- tutaj zdjecie dodane -->
                                 @endif
                                 </div>
-                                <div class="flex-grow w-1 px-2 py-2">
+                                <div class="flex-grow w-1 px-2 py-3">
                                     <h1 class="text-lg">
                                         <a class="hover:text-blue-700" href = "{{route('customProductsShow', $customProduct->id)}}">
                                             {{$customProduct->name}}
                                         </a> 
                                     </h1>
-                                    <p class="text-xs text-gray-400 line-clamp-3">
+                                    <p class="text-xs text-justify text-gray-400 line-clamp-5">
                                         {{$customProduct->description ?? 'Brak opisu.' }}
 
                                     </p>
@@ -73,21 +73,24 @@
                            </div>
                      </div>
 
-                      <div class="flex-none">
+                      <div class="w-16 flex-none">
                         <form style="margin:0px; padding:0px; display:inline;" action="{{route('customProductsDelete', $customProduct->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                                 <button onclick="return confirm('Potwierdź usunięcie produktu')" 
-                                class="my-6 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                                class="my-12 mx-3 py-1 px-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                                     X
                                 </button>
                         </form>
                      </div>
                     </div>
 
+                
+                    <div class="p-1"></div>
+
                 @endforeach
 
             </div>
         </div>
-    </div>
+ 
 </x-app-layout>

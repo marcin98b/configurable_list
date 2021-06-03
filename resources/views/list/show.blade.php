@@ -86,7 +86,7 @@
                 <form class="pl-2" style="padding-top:1px;" id="form_update" method="POST" action="{{route('productUpdate', $list->id )}}">
                     @csrf 
 
-                        <input form="form_update" value="Zapisz zmiany" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                        <input form="form_update" value="Zapisz" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                         
             </div>
 
@@ -115,7 +115,15 @@
 
                                 <h1 class="text-lg">
                                     <input  onchange='handleChange(this, {{$loop->index}});' name="checkbox_{{$product->id}}" value="1" class="product_checkbox w-5 h-5 mr-2" @if($product->ticked) checked @endif type="checkbox"/>
-                                  <p class="inline">{{$product->name}}</p>
+                                  <p class="inline">
+                                  
+                                    @if(!$product->custom_product_id)
+                                       {{$product->name}}
+                                      @else
+                                       <a class="text-blue-500 underline hover:text-blue-600" href="{{route('customProductsShow', $product->custom_product_id)}}"> {{$product->name}} </a>
+                                      @endif
+                                
+                                  </p>
                                     
                                 </h1>
 
@@ -151,7 +159,15 @@
 
                                         <h1 class="text-lg">
                                             <input  onchange='handleChange(this, {{$loop->index}});' name="checkbox_{{$product->id}}" value="1" class="product_checkbox w-5 h-5 mr-2" @if($product->ticked) checked @endif type="checkbox"/>
-                                        <p class="inline">{{$product->name}}</p>
+                                        <p class="inline">
+                                       
+                                            @if(!$product->custom_product_id)
+                                            {{$product->name}}
+                                           @else
+                                            <a class="text-blue-500 underline hover:text-blue-600" href="{{route('customProductsShow', $product->custom_product_id)}}"> {{$product->name}} </a>
+                                           @endif
+                                        
+                                        </p>
                                             
                                         </h1>
 
@@ -193,7 +209,15 @@
 
                                     <h1 class="text-lg">
                                         <input  onchange='handleChange(this, {{$loop->index}});' name="checkbox_{{$product->id}}" value="1" class="product_checkbox w-5 h-5 mr-2" @if($product->ticked) checked @endif type="checkbox"/>
-                                    <p class="inline">{{$product->name}}</p>
+                                    <p class="inline">
+                                        
+                                        @if(!$product->custom_product_id)
+                                        {{$product->name}}
+                                       @else
+                                        <a class="text-blue-500 underline hover:text-blue-600" href="{{route('customProductsShow', $product->custom_product_id)}}"> {{$product->name}} </a>
+                                       @endif
+                                    
+                                    </p>
                                         
                                     </h1>
 

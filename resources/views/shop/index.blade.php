@@ -51,11 +51,7 @@
                         <div class="float-left">
                             <h1 class="text-lg">
                                 <a class="hover:text-blue-700" href = "{{route('shopShow', $shop->id)}}">
-                                    @if (is_null($shop->name))
-                                    {{ __('Sklep: "<brak nazwy>"') }}
-                                    @else
-                                        Sklep: "{{$shop->name}}"
-                                    @endif
+                                      {{$shop->name}}
                                 </a>
                                 
                             </h1>
