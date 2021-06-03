@@ -12,21 +12,20 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link class="px-3" :href="route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('listShow')">
+                    <x-nav-link class="px-3" :href="route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('list*')">
                         {{ __('Twoje listy') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:flex">
-                    <x-nav-link class="px-3" :href="route('shopsIndex')" :active="request()->routeIs('shopsIndex') || request()->routeIs('shopShow')">
+                    <x-nav-link class="px-3" :href="route('shopsIndex')" :active="request()->routeIs('shop*')">
                         {{ __('Sklepy') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:flex">
                     <x-nav-link class="px-3"
-                        {{-- :href="route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('listShow')" --}}
-                        >
+                       :href="route('customProductsIndex')" :active="request()->routeIs('customProduct*')" >
                         {{ __('Produkty') }}
                     </x-nav-link>
                 </div>

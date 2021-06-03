@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\List_;
 use App\Models\Product;
+use App\Models\customProduct;
+use App\Models\User;
 use Auth;
 
 
@@ -23,6 +25,12 @@ class ProductController extends Controller
  
         $product = new Product();
         $product -> name = request('name');
+        if(Auth::user()->customProducts->contains('name', request('name')))
+        {
+            $customProduct = customProduct::where('name', request('name'))->first();
+            $product -> custom_product_id = $customProduct->id;
+
+        }
         if(request('shopCategory')) $product->shop_category_id = request('shopCategory');
         $product -> list_id = $id;
        // $product -> user_id = Auth::user()->id;

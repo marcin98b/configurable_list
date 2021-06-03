@@ -24,8 +24,8 @@ Route::get('/', function () {
 Route::GET('/dashboard', [ListController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::POST('/lists/create', [ListController::class, 'create'])->name('listCreate');
 Route::POST('/lists/{id}/duplicate', [ListController::class, 'duplicate'])->name('listDuplicate');
-Route::GET('/lists/shared/{share_key}', [ListController::class, 'showShared'])->name('listSharedView'); //nowe
-Route::POST('/lists/shared/{share_key}', [ListController::class, 'createShared'])->name('listCreateShared'); //nowe
+Route::GET('/lists/shared/{share_key}', [ListController::class, 'showShared'])->name('listSharedView');
+Route::POST('/lists/shared/{share_key}', [ListController::class, 'createShared'])->name('listCreateShared'); 
 Route::POST('/lists/{id}', [ListController::class, 'edit'])->name('listEdit');
 Route::GET('/lists/{id}/edit', [ListController::class, 'editView'])->name('listEditView');
 Route::GET('/lists/{id}', [ListController::class, 'show'])->name('listShow');
@@ -68,9 +68,10 @@ Route::POST('/lists/{id}/products/update', [ProductController::class, 'update'])
 Route::DELETE('/lists/{id}/products/{product_id}', [ProductController::class, 'delete'])->name('productDelete');
 
 //Produkty niestandardowe
-
-
-
+Route::GET('/customProducts/' , [CustomProductController::class, 'index'])->name('customProductsIndex');
+Route::POST('/customProducts/create' , [CustomProductController::class, 'create'])->name('customProductsCreate');
+Route::GET('/customProducts/{id}' , [CustomProductController::class, 'show'])->name('customProductsShow');
+Route::DELETE('/customProducts/{id}' , [CustomProductController::class, 'delete'])->name('customProductsDelete');
 
 
 // TO_DO

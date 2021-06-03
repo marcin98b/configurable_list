@@ -71,13 +71,15 @@
                 @endif
 
                     <input list="nameList" autocomplete="off" id="name" autofocus required name="name" placeholder="Dodaj produkt ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
+               
+                    @if(Auth::user()->customProducts)
                     <datalist id="nameList">
-                        <option value="Edge">
-                        <option value="Firefox">
-                        <option value="Chrome">
-                        <option value="Opera">
-                        <option value="Safari">
+                        @foreach(Auth::user()->customProducts as $customProduct)
+                        <option value="{{$customProduct->name}}">
+                        @endforeach
+
                       </datalist>
+                    @endif
                     <input value="+" type="submit" class="py-1 px-3 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                     
                 </form>
@@ -91,18 +93,23 @@
             <div class="container max-w-7xl mx-auto ">
 
 
-
+                @if ($list->products->isEmpty())
+                
+                <div class="p-6 width-100 bg-white border-b border-gray-200">
+                    Brak zdefiniowanych produktów w liście
+                </div>
+                @endif
                      
                     <div id="products" >
 
                     @if(!$list->shop_id || $list->shop->shopCategories->isEmpty())    
                    
 
-                    @if(count($list->products)) <div class="pb-1 text-center bg-blue-200">Nieskategoryzowane</div> @endif
+                    @if(count($list->products)) <div class="p-1 text-center bg-blue-200">Nieskategoryzowane</div> @endif
 
                         @foreach($list->products as $product)
 
-                        <div class="product clearfix h-24 p-6 width-100 bg-white border-b border-gray-200">
+                        <div class="product clearfix  h-14 p-3 width-100 bg-white border-b border-gray-200">
                             <div class="float-left">
                                 
 
@@ -132,13 +139,13 @@
     
                         @foreach($list->shop->shopCategories->sortBy('order_position') as $shopCategory)
 
-                        @if(count($list->products->where('shop_category_id', $shopCategory->id))) <div class="pb-1 text-center bg-blue-200">  {{$shopCategory->name}} </div> @endif 
+                        @if(count($list->products->where('shop_category_id', $shopCategory->id))) <div class="p-1 text-center bg-green-200">  {{$shopCategory->name}} </div> @endif 
 
                             @foreach($shopCategory->products as $product)
 
                                 @if($list->id == $product->list_id)
 
-                                <div class="product clearfix h-24 p-6 width-100 bg-white border-b border-gray-200">
+                                <div class="product clearfix  h-14 p-3 width-100 bg-white border-b border-gray-200">
                                     <div class="float-left">
                                         
 
@@ -164,6 +171,10 @@
 
                                 @endif
 
+                                @if($loop->last)
+                                    <div class="p-5"></div>
+                                @endif
+
                             @endforeach
 
 
@@ -172,11 +183,11 @@
 
                 
                         <!-- nieskategoryzowane -->
-                        @if(count($list->products->where('shop_category_id', null))) <div class="pb-1 text-center bg-blue-200">Nieskategoryzowane</div> @endif    
+                        @if(count($list->products->where('shop_category_id', null))) <div class="p-1 text-center bg-blue-200">Nieskategoryzowane</div> @endif    
 
                         @foreach($list->products->where('shop_category_id', null) as $product)
                 
-                            <div class="product clearfix h-24 p-6 width-100 bg-white border-b border-gray-200">
+                            <div class="product clearfix h-14 p-3 width-100 bg-white border-b border-gray-200">
                                 <div class="float-left">
                                     
 
