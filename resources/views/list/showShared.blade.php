@@ -2,7 +2,10 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             @if(is_null($list->name))
-            Udostępniona Lista: &lt;nienazwana&gt; (z dnia: {{$list->created_at}})
+            Udostępniona Lista: &lt;nienazwana&gt;
+            <p class="text-gray-400 text-base">
+                autor: {{$list->user->name}}
+            </p>
             @else
             Udostępniona Lista: "{{$list->name}}"
             <p class="text-gray-400 text-base">
@@ -14,17 +17,6 @@
 
     </x-slot>
 
-
-    {{-- <div class="py-3 max-w-7xl mx-auto sm:px-8 lg:px-8">              
-    <form class="float-right" style="margin:0px; padding:0px; display:inline;" action="{{route('list_categoryIndex', $list->id)}}" method="GET">
-        @csrf
-        @method('GET')
-            <button 
-            class="py-1 px-3 rounded bg-gray-500 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
-                Ustawienia listy
-            </button>
-    </form>  
-</div> --}}
 
     <div class="py-4">
 

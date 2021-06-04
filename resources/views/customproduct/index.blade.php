@@ -53,11 +53,12 @@
 
                             <div class="flex">
                                 <div class="flex-none">
-                                @if(!$customProduct->file_path)
-                                  <img class="h-36 w-full bg-cover" src="https://via.placeholder.com/140x140.png?text=Brak+zdjecia"/>
+                                @if($customProduct->img_filepath)
+                                   <img class="h-36 w-36 bg-cover" src="/storage/{{$customProduct->img_filepath}}"/>
                                 @else
-                                    <!-- tutaj zdjecie dodane -->
+                                    <img class="h-36 w-36 bg-cover" src="https://via.placeholder.com/140x140.png?text=Brak+zdjecia"/>
                                 @endif
+                              
                                 </div>
                                 <div class="flex-grow w-1 px-2 py-3">
                                     <h1 class="text-lg">

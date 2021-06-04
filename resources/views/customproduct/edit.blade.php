@@ -1,14 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            @if(is_null($list->name))
-            Edycja listy: &lt;nienawana&gt; (z dnia: {{$list->created_at}})
-            @else
-            Edycja listy: "{{$list->name}}"
-            @endif
+            Edycja produktu: "{{$customProduct->name}}"
         </h2>
     </x-slot>
-
 
 
 
@@ -28,75 +23,64 @@
             @endif
 
 
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action ="{{route('listEdit', $list->id)}}" class="w-full w-100">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action ="{{route('customProductsEdit', $customProduct->id)}}" enctype="multipart/form-data" class="w-full w-100">
             @csrf
             <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
                   <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-name">
-                    Nazwa listy:
+                    Nazwa produktu:
                   </label>
                 </div>
                 <div class="md:w-2/3">
-                  <input class="appearance-none rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" value="{{$list->name}}" placeholder="Lista nienazwana" id="inline-name" name="name" type="text">
+                  <input class="appearance-none rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" value="{{$customProduct->name}}" placeholder="Lista nienazwana" id="inline-name" name="name" type="text">
                 </div>
               </div>
               <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
-                  <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-password">
-                    Przypisany sklep:
+                  <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-textarea">
+                    Opis:
                   </label>
                 </div>
                 <div class="md:w-2/3">
-                    <select id="select_shops" name="shop_id" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
 
-                      @if($shops)
-                        @foreach($shops as $shop)
-                          <option @if($list->shop_id == $shop->id) {{$temp=1}} selected @endif value="{{$shop->id}}">{{$shop->name}}</option>
-                        @endforeach 
-                      @endif
+                    <textarea class="w-full h-24" name="description" id="inline-textarea">{{$customProduct->description}}</textarea>
+                </div>
+                
+              </div>
 
-                        @if(!$shops)
-                         <option value="">Brak dodanych sklepów</option>
-                    
-                         <script>
-                            document.getElementById('select_shops').disabled="true";
-                         </script>   
-                    
-                         @else
-
-                         <option class="text-red-500" value="" @if(!isset($temp)) selected @endif>[Brak przypisania]</option>
-
-                         @endif
-                      </select>
-
-
-              <!--share -->
+              <!--image -->
+              <div class="md:flex md:items-center mb-6">    
+                <div class="md:w-1/3 text-right">
+                    <label class="block text-gray-500 font-bold md:text-right: mb-1 md:mb-0 pr-4">Zdjęcie:</label>
+                </div>
+                <div class="md:w-2/3">
+                   <input name="image" id="image" type="file">
                 </div>
               </div>
+              <!-- share -->
               <div class="md:flex md:items-center mb-6">
                 <div class="md:w-1/3">
                   <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-password">
-                    Udostępnij <input id="share" name="share" @if($list->share_key) checked @endif type="checkbox"/>
+                    Udostępnij: &nbsp; <input id="share" name="share" @if($customProduct->share_key) checked @endif type="checkbox"/>
                   </label>
                 </div>
                 <div class="md:w-2/3">
-                  @if($list->share_key)
-                  <input id="shareUrl" class="inline" type="text" value="{{route('listSharedView', $list->share_key)}}" readonly="readonly"  class="appearance-none inline rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
+                  @if($customProduct->share_key)
+                  <input id="shareUrl" class="inline" type="text" value="{{route('listSharedView', $customProduct->share_key)}}" readonly="readonly"  class="appearance-none inline rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
                   <button type="button" id="getShareUrl"  onclick="getURL()" class="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded inline">Kopiuj</button>
                   @endif
                 </div>
               </div>
 
-
               <div class="md:flex md:items-center">
                 <div class="md:w-1/3"></div>
                 <div class="md:w-2/3">
                   <button type="submit" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
-                    Edytuj listę
+                    Edytuj produkt
                   </button>
 
                     <button class="shadow bg-gray-500 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
-                    <a href="{{route('listShow',$list->id)}}">Powrót</a>
+                    <a href="{{route('customProductsShow',$customProduct->id)}}">Powrót</a>
                     </button>
 
                 </div>
@@ -105,12 +89,31 @@
 
       </div>
 
-
     
 </x-app-layout>
 
 
 <script>
+
+//Upload
+const inputElement = document.querySelector('input[id="image"]');
+const pond = FilePond.create( inputElement );
+
+FilePond.setOptions({
+
+  server: {
+     url: '/customProducts/'+{{$customProduct->id}}+'/edit/upload',
+     headers: {
+
+      'X-CSRF-TOKEN':'{{csrf_token()}}'
+
+     }
+
+   } 
+
+
+});
+
 
 document.getElementById('message').style.visibility="hidden";
 

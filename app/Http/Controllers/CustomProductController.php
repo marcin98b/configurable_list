@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\customProduct;
+use Illuminate\Support\Str;
 use Auth;
 
 class CustomProductController extends Controller
@@ -54,6 +55,63 @@ class CustomProductController extends Controller
             'customProduct' => $customProduct,
 
         ]);
+
+    }
+    public function editView($id) {
+    
+        $customProduct = customProduct::FindOrFail($id);
+
+        return view('customproduct.edit', [
+            'customProduct' => $customProduct,
+            ]);
+
+    }   
+
+    public function edit($id) {
+
+        $customProduct=customProduct::FindOrFail($id);
+        if(request('name')) $customProduct -> name = request('name');
+        if(request('description')) $customProduct -> description = request('description');
+        //share button
+        if(request('share')) $customProduct -> share_key = Str::random(16);
+        else $customProduct -> share_key = null;
+
+        //Upload zrobic
+
+
+        $customProduct -> save();
+
+        return redirect(route('customProductsEditView', $id))
+        ->with('message', 'Pomyślnie edytowano produkt');
+        
+
+    }
+
+
+
+    public function store($id, Request $request) {
+
+        if($request->hasFile('image')) 
+        {
+            $request->validate([
+
+                'image' => 'required|mimes:jpg,jpeg,png,bmp|max:60000'
+
+            ]);
+
+            $file = $request->file('image');
+            $fileName = time().'_'.$file->getClientOriginalName();
+            $filePath = $file->storeAs('products', $fileName, 'public');
+
+            $customProduct = customProduct::FindOrFail($id);
+            $customProduct -> img_filepath = $filePath;
+            $customProduct -> save();
+
+            return $fileName;
+        }
+    
+        return '';
+
 
     }
 

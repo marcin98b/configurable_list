@@ -72,7 +72,9 @@ Route::GET('/customProducts/' , [CustomProductController::class, 'index'])->name
 Route::POST('/customProducts/create' , [CustomProductController::class, 'create'])->name('customProductsCreate');
 Route::GET('/customProducts/{id}' , [CustomProductController::class, 'show'])->name('customProductsShow');
 Route::DELETE('/customProducts/{id}' , [CustomProductController::class, 'delete'])->name('customProductsDelete');
-
+Route::GET('/customProducts/{id}/edit' , [CustomProductController::class, 'editView'])->name('customProductsEditView');
+Route::POST('/customProducts/{id}/edit' , [CustomProductController::class, 'edit'])->name('customProductsEdit');
+Route::POST('/customProducts/{id}/edit/upload' , [CustomProductController::class, 'store']);
 
 // TO_DO
 //

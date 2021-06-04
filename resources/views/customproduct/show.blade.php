@@ -12,6 +12,14 @@
     <div class="max-w-7xl mx-auto sm:px-8 lg:px-8">
 
 
+        <form style="margin:0px; padding:0px; display:inline;" action="{{route('customProductsEditView', $customProduct->id)}}" method="POST">
+            @csrf
+            @method('GET')
+                <button 
+                class="py-1 px-3 rounded bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                    Edytuj
+                </button>
+        </form>  
 
             <!-- wiadomosc -->
             @if(session('message'))
@@ -30,8 +38,12 @@
             <div class="grid justify-items-center">
 
                 <div class="overflow-hidden border w-full lg:w-8/12 md:w-11/12 bg-white mx-3 md:mx-0 lg:mx-0">
-
-                    <img class="w-full h-50 bg-cover" src="https://via.placeholder.com/1024x768.png?text=Brak+zdjecia">
+                    @if($customProduct->img_filepath)
+                    <img class="w-full h-50 bg-cover" src="/storage/{{$customProduct->img_filepath}}">
+                    @else
+                      <img class="w-full h-50 bg-cover" src="https://via.placeholder.com/1024x768.png?text=Brak+zdjecia">
+                    @endif
+                    
                     <div class="px-3 pb-2">
                      <div class="text-center pt-2">
                             <span class="text-lg font-medium">{{$customProduct->name}}</span>
