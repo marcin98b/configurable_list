@@ -53,12 +53,13 @@
 
                             <div class="flex">
                                 <div class="flex-none">
-                                @if($customProduct->img_filepath)
-                                   <img class="h-36 w-36 bg-cover" src="/storage/{{$customProduct->img_filepath}}"/>
-                                @else
-                                    <img class="h-36 w-36 bg-cover" src="https://via.placeholder.com/140x140.png?text=Brak+zdjecia"/>
-                                @endif
-                              
+                                    <a class="hover:text-blue-700" href = "{{route('customProductsShow', $customProduct->id)}}">
+                                    @if($customProduct->img_filepath)
+                                    <img class="h-36 w-36 bg-cover hover:opacity-75" src="/storage/{{$customProduct->img_filepath}}"/>
+                                    @else
+                                        <img class="h-36 w-36 bg-cover hover:opacity-75" src="https://via.placeholder.com/140x140.png?text=Brak+zdjecia"/>
+                                    @endif
+                                    </a>
                                 </div>
                                 <div class="flex-grow w-1 px-2 py-3">
                                     <h1 class="text-lg">

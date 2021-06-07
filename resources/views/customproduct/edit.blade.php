@@ -43,7 +43,7 @@
                 </div>
                 <div class="md:w-2/3">
 
-                    <textarea class="w-full h-24" name="description" id="inline-textarea">{{$customProduct->description}}</textarea>
+                    <textarea class="w-full h-48" name="description" id="inline-textarea">{{$customProduct->description}}</textarea>
                 </div>
                 
               </div>
@@ -51,7 +51,9 @@
               <!--image -->
               <div class="md:flex md:items-center mb-6">    
                 <div class="md:w-1/3 text-right">
-                    <label class="block text-gray-500 font-bold md:text-right: mb-1 md:mb-0 pr-4">Zdjęcie:</label>
+                    <label class="block text-gray-500 font-bold md:text-right: mb-1 md:mb-0 pr-4">
+                    @if($customProduct->img_filepath) Zaktualizuj zdjęcie: @else Wyślij zdjęcie: @endif
+                    </label>
                 </div>
                 <div class="md:w-2/3">
                    <input name="image" id="image" type="file">
@@ -66,7 +68,7 @@
                 </div>
                 <div class="md:w-2/3">
                   @if($customProduct->share_key)
-                  <input id="shareUrl" class="inline" type="text" value="{{route('listSharedView', $customProduct->share_key)}}" readonly="readonly"  class="appearance-none inline rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
+                  <input id="shareUrl" class="inline" type="text" value="{{route('customProductSharedView', $customProduct->share_key)}}" readonly="readonly"  class="appearance-none inline rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
                   <button type="button" id="getShareUrl"  onclick="getURL()" class="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded inline">Kopiuj</button>
                   @endif
                 </div>

@@ -32,8 +32,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::GET('/lists/{id}', [ListController::class, 'show']);
     Route::PUT('/lists/{id}', [ListController::class, 'update']);
     Route::DELETE('/lists/{id}', [ListController::class, 'delete']);
-    Route::GET('/lists/shared/{share_key}', [ListController::class, 'showShared']); //nowe
-    Route::POST('/lists/shared/{share_key}', [ListController::class, 'createShared']); //nowe
+    Route::GET('/lists/shared/{share_key}', [ListController::class, 'showShared']); 
+    Route::POST('/lists/shared/{share_key}', [ListController::class, 'createShared']);
 
     //Sklepy
     Route::GET('/shops', [ShopController::class, 'index']);
@@ -62,6 +62,14 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::PUT('/lists/{id}/products/{product_id}', [ProductController::class, 'update']);
     Route::DELETE('/lists/{id}/products/{product_id}', [ProductController::class, 'delete']);
 
-
+    //Produkty niestandardowe
+    Route::GET('/customProducts/' , [CustomProductController::class, 'index']);
+    Route::POST('/customProducts/create' , [CustomProductController::class, 'create']);
+    Route::GET('/customProducts/{id}' , [CustomProductController::class, 'show']);
+    Route::DELETE('/customProducts/{id}' , [CustomProductController::class, 'delete']);
+    Route::PUT('/customProducts/{id}' , [CustomProductController::class, 'update']);
+    Route::POST('/customProducts/{id}/upload' , [CustomProductController::class, 'store']);
+    Route::GET('/customProducts/shared/{share_key}', [CustomProductController::class, 'showShared']);
+    Route::POST('/customProducts/shared/{share_key}', [CustomProductController::class, 'createShared']); 
 
 });

@@ -2,7 +2,12 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
-            Produkt: "{{$customProduct->name}}" <a class="text-blue-500 no-underline hover:underline" href="{{route('customProductsEditView', $customProduct->id)}}">[edytuj]</a> 
+            Produkt: "{{$customProduct->name}}"  
+    
+            <p class="text-gray-400 text-base">
+                autor: {{$customProduct->user->name}}
+                </p>
+    
         </h2>
 
     </x-slot>
@@ -24,6 +29,13 @@
               </div>
             @endif
 
+
+            <div class="pb-5 flex justify-center">
+                <form method="POST" action="{{route('customProductCreateShared', $customProduct->share_key)}}">
+                  @csrf      
+                  <input value="Dodaj do swojego konta" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                </form>       
+            </div>
 
             <div class="grid justify-items-center">
 

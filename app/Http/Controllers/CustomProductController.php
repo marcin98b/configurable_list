@@ -115,5 +115,33 @@ class CustomProductController extends Controller
 
     }
 
+    public function showShared($share_key) {
+
+        $customProduct = customProduct::firstWhere('share_key', $share_key);
+
+        if($customProduct) {
+        return view('customproduct.showShared', [
+            'customProduct' => $customProduct,
+
+        ]);
+        }
+        else return redirect('dashboard');
+
+    }
+
+    public function createShared($share_key) {
+
+        $customProduct = customProduct::firstWhere('share_key', $share_key);
+        $newCustomProduct = $customProduct -> replicate();
+        $newCustomProduct -> user_id = Auth::user()->id;
+        $newCustomProduct -> share_key = null;
+        $newCustomProduct -> save();
+       
+        return redirect(route('customProductsIndex'))->with('message', 'Pomyślnie dodano produkt "'.$newCustomProduct->name.'".');
+      
+
+    }
+
+
 
 }

@@ -75,14 +75,12 @@ Route::DELETE('/customProducts/{id}' , [CustomProductController::class, 'delete'
 Route::GET('/customProducts/{id}/edit' , [CustomProductController::class, 'editView'])->name('customProductsEditView');
 Route::POST('/customProducts/{id}/edit' , [CustomProductController::class, 'edit'])->name('customProductsEdit');
 Route::POST('/customProducts/{id}/edit/upload' , [CustomProductController::class, 'store']);
+Route::GET('/customProducts/shared/{share_key}', [CustomProductController::class, 'showShared'])->name('customProductSharedView');
+Route::POST('/customProducts/shared/{share_key}', [CustomProductController::class, 'createShared'])->name('customProductCreateShared'); 
 
 // TO_DO
-//
-// PRODUKT
-// - niestandardowe produkty (trzecia zakladka)
-// - dodawanie zdjecia (pozniej)
-//
 // SORTOWANIE
 // - sortowanie produktow/list/sklepow
+
 
 require __DIR__.'/auth.php';
