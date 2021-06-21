@@ -15,7 +15,7 @@ class customProduct extends Model
         'description',
         'user_id',
         'img_filepath',
-        'is_public'
+        'share_key'
 
     ];
 

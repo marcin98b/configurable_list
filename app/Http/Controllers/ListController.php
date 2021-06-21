@@ -85,6 +85,7 @@ class ListController extends Controller
             $newList -> name = $listToCopy->name . ' (autorstwa '.User::find($listToCopy->user_id)->name. ')';
             $newList -> share_key = null;
             $newList -> shop_id = request('shop_id');
+            $newList -> user_id = Auth::user()->id;
             $newList->save();
 
             //kopiowanie produktow skategoryzowanych
@@ -118,6 +119,7 @@ class ListController extends Controller
                 {
                     $newProduct = $product -> replicate();
                     $newProduct -> list_id = $newList->id;
+                    $newProduct -> custom_product_id = null;
                     if($temp) $newProduct -> shop_category_id = $temp;
                     else $newProduct -> shop_category_id = $newCategory->id;
                     $newProduct -> save();
@@ -130,6 +132,7 @@ class ListController extends Controller
             {
                 $newProduct = $product -> replicate();
                 $newProduct -> list_id = $newList->id;
+                $newProduct -> custom_product_id = null;
                 $newProduct -> save();
 
             }
@@ -142,6 +145,7 @@ class ListController extends Controller
             $newList -> name = $listToCopy->name . ' (autorstwa '.User::find($listToCopy->user_id)->name. ')';
             $newList -> share_key = null;
             $newList -> shop_id = null;
+            $newList -> user_id = Auth::user()->id;
             $newList->save();
 
             foreach($listToCopy->products as $product)
@@ -149,6 +153,7 @@ class ListController extends Controller
                 $newProduct=$product->replicate();
                 $newProduct->list_id = $newList->id;
                 $newProduct->shop_category_id = null;
+                $newProduct -> custom_product_id = null;
                 $newProduct->save();
 
             }

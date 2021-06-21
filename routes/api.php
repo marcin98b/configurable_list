@@ -63,7 +63,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::DELETE('/lists/{id}/products/{product_id}', [ProductController::class, 'delete']);
 
     //Produkty niestandardowe
-    Route::GET('/customProducts/' , [CustomProductController::class, 'index']);
+    Route::GET('/customProducts' , [CustomProductController::class, 'index']);
     Route::POST('/customProducts/create' , [CustomProductController::class, 'create']);
     Route::GET('/customProducts/{id}' , [CustomProductController::class, 'show']);
     Route::DELETE('/customProducts/{id}' , [CustomProductController::class, 'delete']);
@@ -71,5 +71,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::POST('/customProducts/{id}/upload' , [CustomProductController::class, 'store']);
     Route::GET('/customProducts/shared/{share_key}', [CustomProductController::class, 'showShared']);
     Route::POST('/customProducts/shared/{share_key}', [CustomProductController::class, 'createShared']); 
+
+
+
 
 });
