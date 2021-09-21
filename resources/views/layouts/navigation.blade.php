@@ -91,9 +91,9 @@
 
         <div class="">
             <x-responsive-nav-link 
-            {{-- :href="route('dashboard')" :active="request()->routeIs('dashboard')" --}}
+            :href="route('customProductsIndex')" :active="request()->routeIs('customProduct*')" 
             >
-                {{ __('Kategorie') }}
+                {{ __('Produkty') }}
             </x-responsive-nav-link>
         </div>
 
