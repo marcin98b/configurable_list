@@ -68,7 +68,7 @@ Route::POST('/lists/{id}/products/update', [ProductController::class, 'update'])
 Route::DELETE('/lists/{id}/products/{product_id}', [ProductController::class, 'delete'])->name('productDelete');
 
 //Produkty niestandardowe
-Route::GET('/customProducts/' , [CustomProductController::class, 'index'])->name('customProductsIndex');
+Route::GET('/customProducts' , [CustomProductController::class, 'index'])->name('customProductsIndex');
 Route::POST('/customProducts/create' , [CustomProductController::class, 'create'])->name('customProductsCreate');
 Route::GET('/customProducts/{id}' , [CustomProductController::class, 'show'])->name('customProductsShow');
 Route::DELETE('/customProducts/{id}' , [CustomProductController::class, 'delete'])->name('customProductsDelete');

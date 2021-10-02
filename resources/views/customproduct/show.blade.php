@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
-            Produkt: "{{$customProduct->name}}" <a class="text-blue-500 no-underline hover:underline" href="{{route('customProductsEditView', $customProduct->id)}}">[edytuj]</a> 
+            Produkt: "{{$customProduct->name}}" 
         </h2>
 
     </x-slot>
@@ -65,14 +65,20 @@
      
 
             
-            <div class="grid justify-items-center">
-                    <div>
-                        <form action="{{route('dashboard')}}">    
-                            <x-button class="flex text-center mt-4">
-                                {{ __('Powrót') }}
+            <div class="flex items-center justify-center mt-4">
+               
+                    <form action="{{route('customProductsEditView', $customProduct->id)}}">
+                            <x-button class="bg-yellow-500 hover:bg-yellow-600 flex text-center mt-4">
+                                {{ __('Edytuj') }}
                             </x-button>
-                       </form>
-                   </div> 
+
+                        </form>
+
+                    <form action="{{route('customProductsIndex')}}">          
+                       <x-button class="ml-2 flex text-center mt-4">
+                        {{ __('Powrót') }}
+                    </x-button>
+                </form>
                          
            </div>
 
@@ -80,49 +86,7 @@
         
     </div>
 
-    <form action="" method="POST" id="form_delete" style="display:none">
-        @csrf
-        @method('DELETE')
-       <input type=hidden/>
-       </form>
-
 
     
 </x-app-layout>
 
-
-<script>
-
-
-// var products = document.getElementsByClassName('product_checkbox');
-// for (var i = 0; i < products.length; i++) {
-//     if(products[i].checked == true) 
-//     {
-//         document.getElementsByClassName('product')[i].style.backgroundColor="#edffee";
-//         document.getElementsByClassName('product')[i].style.opacity="0.7";
-
-//     }
-//     else 
-//     {
-//         document.getElementsByClassName('product')[i].style.opacity="1";
-//         document.getElementsByClassName('product')[i].style.backgroundColor="white";
-    
-//     }
-
-// }
-
-
-function form_delete($id, $product_id) {
-
-    var url = '/lists/'+$id+'/products/'+$product_id;
-    document.getElementById("form_delete").action = url;
-    document.getElementById("form_delete").submit();
-
-
-
-}
-
-
-
-
-</script>

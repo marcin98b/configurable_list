@@ -1,9 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Konfiguracja kategorii (dla sklepu: "{{$shop->name}}")
- 
+        <h2 class="font-semibold text-md sm:text-lg text-gray-800 leading-tight">
+                Konfiguracja kolejności kategorii
         </h2>
+
+        <h3 class="text-muted">
+          (dla sklepu: 
+          <a class="text-blue-600 font-bold" href = "{{route('shopShow',$shop->id)}}">  "{{$shop->name}}" </a> 
+          )
+        </h3>
     </x-slot>
 
     
@@ -35,11 +40,13 @@
                 <form method="POST" action="{{route('shop_categoryCreate', $shop->id)}}">
                 @csrf 
 
-                    <input id="name" autofocus required name="name" placeholder="Dodaj kategorię ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
-                    <input value="+" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                    <input id="name" autofocus required name="name" placeholder="Dodaj kategorię ..." class="py-1 w-36 border border-transparent focus:outline-none focus:ring-2 ">
+                    <input value="+" type="submit" class="mr-1 py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                     
                 </form>
-                <button class="py-1 ml-1 px-2 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer" onclick="getOrder()">Zapisz kolejność</button>
+
+                {{-- <button class="py-1 ml-1 mr-1 px-2 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer" onclick="getOrder()">
+                  Zapisz</button> --}}
 
             </div>
 
@@ -77,9 +84,24 @@
           </div>
 
 
+          <div class="flex items-center justify-center mt-4">
+                 
+
+                <x-button onclick="getOrder()" class="flex text-center mt-4 bg-yellow-500 hover:bg-yellow-600">
+                    {{ __('Edytuj kolejność') }}
+                </x-button>
 
 
+           <form action="{{route('shopShow', $shop->id)}}">    
+            <x-button class="ml-2 flex text-center mt-4">
+                {{ __('Powrót') }}
+            </x-button>
+       </form>
 
+</div>
+
+   {{-- <button class="py-1 ml-1 mr-1 px-2 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer" onclick="getOrder()">
+    Zapisz</button> --}}
 
     </div>
         
@@ -141,7 +163,7 @@ function getOrder() {
     }
 
 
-//axios w przyszlosci
+//axios ?
 
     if(!arr.length) window.location("/shops/"+{{$shop->id}}+"/categories/");
 

@@ -30,7 +30,7 @@
                 @csrf 
 
                     <input id="name" autofocus required name="name" placeholder="Dodaj produkt ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
-                    <input value="+" type="submit" class="py-1 px-3 bg-purple-500 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                    <input value="+" type="submit" class="mr-1 py-1 px-3 bg-purple-500 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
 
                 </form>
             </div>

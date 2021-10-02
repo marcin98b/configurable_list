@@ -30,7 +30,7 @@
                 @csrf 
 
                     <input id="name" autofocus required name="name" placeholder="Dodaj sklep ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
-                    <input value="+" type="submit" class="py-1 px-3 bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                    <input value="+" type="submit" class="mr-1 py-1 px-3 bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
 
                 </form>
             </div>
@@ -47,7 +47,7 @@
 
                 @foreach ($shops as $shop)
                     
-                    <div class="clearfix h-24 p-6 width-100 bg-white border-b border-gray-200">
+                    <div class="clearfix h-24 p-4 width-100 bg-white border-b border-gray-200">
                         <div class="float-left">
                             <h1 class="text-lg">
                                 <a class="hover:text-blue-700" href = "{{route('shopShow', $shop->id)}}">
@@ -55,10 +55,11 @@
                                 </a>
                                 
                             </h1>
+                            <p class="text-xs text-gray-400	">Data utworzenia: {{$shop->created_at}}</p>
                             <p class="text-xs text-gray-400	">Ilość podpiętych list: {{$shop->lists->count()}}</p>
                      </div>
 
-                      <div class="float-right">
+                      <div class="float-right py-3">
                         <form style="margin:0px; padding:0px; display:inline;" action="{{route('shopDelete', $shop->id)}}" method="POST">
                             @csrf
                             @method('DELETE')

@@ -29,13 +29,13 @@
               </div>
             @endif
 
-
+{{-- 
             <div class="pb-5 flex justify-center">
                 <form method="POST" action="{{route('customProductCreateShared', $customProduct->share_key)}}">
                   @csrf      
                   <input value="Dodaj do swojego konta" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                 </form>       
-            </div>
+            </div> --}}
 
             <div class="grid justify-items-center">
 
@@ -77,64 +77,28 @@
      
 
             
-            <div class="grid justify-items-center">
-                    <div>
-                        <form action="{{route('dashboard')}}">    
-                            <x-button class="flex text-center mt-4">
-                                {{ __('Powrót') }}
+            <div class="flex items-center justify-center mt-4">
+                 
+                        <form method="POST" action="{{route('customProductCreateShared', $customProduct->share_key)}}">    
+                           @csrf
+                            <x-button type="submit" class="flex text-center mt-4 bg-green-500 hover:bg-green-600">
+                                {{ __('Dodaj do swojego konta') }}
                             </x-button>
                        </form>
-                   </div> 
-                         
+
+                       <form action="{{route('customProductsIndex')}}">    
+                        <x-button class="ml-2 flex text-center mt-4">
+                            {{ __('Powrót') }}
+                        </x-button>
+                   </form>
+      
            </div>
 
      </div>
         
     </div>
 
-    <form action="" method="POST" id="form_delete" style="display:none">
-        @csrf
-        @method('DELETE')
-       <input type=hidden/>
-       </form>
-
 
     
 </x-app-layout>
 
-
-<script>
-
-
-// var products = document.getElementsByClassName('product_checkbox');
-// for (var i = 0; i < products.length; i++) {
-//     if(products[i].checked == true) 
-//     {
-//         document.getElementsByClassName('product')[i].style.backgroundColor="#edffee";
-//         document.getElementsByClassName('product')[i].style.opacity="0.7";
-
-//     }
-//     else 
-//     {
-//         document.getElementsByClassName('product')[i].style.opacity="1";
-//         document.getElementsByClassName('product')[i].style.backgroundColor="white";
-    
-//     }
-
-// }
-
-
-function form_delete($id, $product_id) {
-
-    var url = '/lists/'+$id+'/products/'+$product_id;
-    document.getElementById("form_delete").action = url;
-    document.getElementById("form_delete").submit();
-
-
-
-}
-
-
-
-
-</script>

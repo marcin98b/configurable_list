@@ -60,7 +60,7 @@
                 @csrf 
 
                 @if($list->shop_id && !$list->shop->shopCategories->isEmpty())
-                    <select class="select py-1 mx-1 border border-transparent focus:outline-none focus:ring-2 " style="height:20" name="shopCategory">
+                    <select class="select py-1 mx-1 w-32 border border-transparent focus:outline-none focus:ring-2 " style="height:20" name="shopCategory">
                        
                 @foreach ($list->shop->shopCategories->sortBy('order_position') as $shopCategory)
                     <option @if(session('lastCategory') == $shopCategory->id) selected @endif value="{{$shopCategory->id}}">{{$shopCategory->name}}</option>
@@ -70,7 +70,7 @@
 
                 @endif
 
-                    <input list="nameList" autocomplete="off" id="name" autofocus required name="name" placeholder="Dodaj produkt ..." class="py-1 border border-transparent focus:outline-none focus:ring-2 ">
+                    <input list="nameList" autocomplete="off" id="name" autofocus required name="name" placeholder="Dodaj produkt ..." class="py-1 w-36 border border-transparent focus:outline-none focus:ring-2 ">
                
                     @if(Auth::user()->customProducts)
                     <datalist id="nameList">
@@ -80,14 +80,13 @@
 
                       </datalist>
                     @endif
-                    <input value="+" type="submit" class="py-1 px-3 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                    <input value="+" type="submit" class="mr-1 py-1 px-3 bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                     
                 </form>
-                <form class="pl-2" style="padding-top:1px;" id="form_update" method="POST" action="{{route('productUpdate', $list->id )}}">
+                <form class="pl-1" style="padding-top:1px;" id="form_update" method="POST" action="{{route('productUpdate', $list->id )}}">
                     @csrf 
 
-                        <input form="form_update" value="Zapisz" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
-                        
+        
             </div>
 
             <div class="container max-w-7xl mx-auto ">
@@ -238,7 +237,7 @@
 
 
                     @endif
-                       </form>
+
                     </div>
 
           </div>
@@ -251,18 +250,43 @@
  
     <br/>
 
-     
+    <div class="flex items-center justify-center mt-4">
 
-            
-            <div class="grid justify-items-center">
+    
+
+<x-button class="bg-green-500 ">
+   <a form="form_update" type="submit" onclick="alert('Zaktualizowano listę!');" > {{ __('Zapisz') }} </a>
+</x-button>
+
+</form>
+
+<form action="{{route('dashboard')}}">   
+
+<x-button class="ml-2">
+    {{ __('Powrót') }}
+</x-button>
+
+</form>
+      </div>
+
+
+            {{-- <div class="grid justify-items-center">
                     <div>
+
+                       <input form="form_update" value="Zapisz" type="submit" class="mr-1 py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+              
+
+
+                    </div>
+                    <div>
+                    </form>
                         <form action="{{route('dashboard')}}">    
                             <x-button class="flex text-center mt-4">
                                 {{ __('Powrót') }}
                             </x-button>
                        </form>
                    </div>       
-           </div>
+           </div> --}}
 
      </div>
         
