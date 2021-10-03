@@ -88,6 +88,27 @@
               </div>
 
 
+              <div class="flex items-center justify-center mt-4">
+                 
+
+                <x-button type="submit" class="flex text-center mt-4 bg-yellow-500 hover:bg-yellow-600">
+                    {{ __('Edytuj') }}
+                </x-button>
+
+              </form>
+
+            <form action="{{route('listShow', $list->id)}}">    
+              <x-button class="ml-2 flex text-center mt-4">
+                  {{ __('Powrót') }}
+              </x-button>
+            </form>
+
+</div>
+
+
+{{-- 
+
+
               <div class="md:flex md:items-center">
                 <div class="md:w-1/3"></div>
                 <div class="md:w-2/3">
@@ -100,8 +121,8 @@
                     </button>
 
                 </div>
-              </div>
-        </form>
+              </div> --}}
+        {{-- </form> --}}
 
       </div>
 

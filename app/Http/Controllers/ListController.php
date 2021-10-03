@@ -160,7 +160,7 @@ class ListController extends Controller
 
         }
 
-        return redirect('dashboard')->with('message', 'Dziala');
+        return redirect('dashboard')->with('message', 'Pomyślnie skopiowano listę!');
 
     }
 
@@ -200,6 +200,7 @@ class ListController extends Controller
         $list=List_::find($id);
         if(request('name')) $list -> name = request('name');
         if(request('shop_id')) $list -> shop_id = request('shop_id');
+        else $list -> shop_id = null;
         //share button
         if(request('share')) $list -> share_key = Str::random(16);
         else $list -> share_key = null;

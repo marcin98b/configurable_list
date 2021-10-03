@@ -57,7 +57,7 @@
                         
                  @endif                 
                 
-                  <input value="Dodaj do swojego konta" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                  <input value="Pobierz listę" type="submit" class="py-1 px-3 bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
                 </form>       
             </div>
 
