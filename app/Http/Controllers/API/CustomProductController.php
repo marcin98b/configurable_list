@@ -49,14 +49,12 @@ class CustomProductController extends Controller
 
     }
  
-    public function update($id) {
+    public function update(Request $request, $id) {
 
-        $customProduct=customProduct::FindOrFail($id);
-        if(request('name')) $customProduct -> name = request('name');
-        if(request('description')) $customProduct -> description = request('description');
-        if(request('share')) $customProduct -> share_key = Str::random(16);
+        $customProduct = customProduct::find($id);
+        if($request->input('share')) $customProduct -> share_key = Str::random(16);
         else $customProduct -> share_key = null;
-        $customProduct -> save();
+        $customProduct -> update($request->all());
         return $customProduct;
 
         

@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function shop_categoryIndex($id) {
 
         $shop = Shop::find($id);
-        return $shop->shopCategories()->orderBy('order_position', 'desc')->get();
+        return $shop->shopCategories()->orderBy('order_position', 'asc')->get();
 
     }
 

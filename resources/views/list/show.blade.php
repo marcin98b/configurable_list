@@ -184,11 +184,12 @@
                                 </div>
                                 </div>
 
+                                    @if($loop->last)
+                                        <div class="p-5"></div>
+                                    @endif
+
                                 @endif
 
-                                @if($loop->last)
-                                    <div class="p-5"></div>
-                                @endif
 
                             @endforeach
 

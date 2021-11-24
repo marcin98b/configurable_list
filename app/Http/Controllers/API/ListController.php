@@ -16,7 +16,7 @@ class ListController extends Controller
 
     public function index() {
       
-        return auth()->user()->lists;
+        return auth()->user()->lists()->orderBy('created_at', 'desc')->get();
 
     }
 
