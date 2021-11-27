@@ -16,7 +16,16 @@ class ListController extends Controller
 
     public function index() {
       
-        return auth()->user()->lists()->orderBy('created_at', 'desc')->get();
+        $lists = auth()->user()->lists()->orderBy('created_at', 'desc')->get();
+
+        foreach($lists as $list)
+        {
+
+            $list->productsCounted = count($list->products->where('ticked'));
+            $list->productsAvalaible = count($list->products);
+
+        }
+        return $lists;
 
     }
 
@@ -140,7 +149,7 @@ class ListController extends Controller
 
         $list = List_::find($id);
         if($request->input('share')) $list -> share_key = Str::random(16);
-        else $list -> share_key = null;
+        //else $list -> share_key = null;
         $list -> update($request->all());
         return $list;
     }

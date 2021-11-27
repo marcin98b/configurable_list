@@ -11,7 +11,12 @@ class ShopController extends Controller
  
     public function index() {
       
-        return auth()->user()->shops;
+        $shops = auth()->user()->shops()->orderBy('created_at', 'desc')->get();
+
+        foreach($shops as $shop)
+            $shop -> assignedLists = count($shop->lists);
+
+        return $shops;
 
     }
 
@@ -32,9 +37,15 @@ class ShopController extends Controller
 
     public function showAssignedLists($id) {
 
-        if(Shop::find($id)->user_id == auth()->user()->id)
-             return Shop::find($id)->lists;
-        else return 0;
+        $lists = Shop::find($id)->lists()->orderBy('created_at', 'desc')->get();
+        foreach($lists as $list)
+        {
+            $list->productsCounted = count($list->products->where('ticked'));
+            $list->productsAvalaible = count($list->products);
+            
+        }
+        return $lists;
+
     }
 
     public function update(Request $request, $id) {

@@ -53,7 +53,7 @@ class CustomProductController extends Controller
 
         $customProduct = customProduct::find($id);
         if($request->input('share')) $customProduct -> share_key = Str::random(16);
-        else $customProduct -> share_key = null;
+        //else $customProduct -> share_key = null;
         $customProduct -> update($request->all());
         return $customProduct;
 
