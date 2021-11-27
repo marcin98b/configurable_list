@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Shop;
+use App\Models\shopCategory;
 use App\Models\List_;
 use App\Models\Product;
 use App\Models\customProduct;
@@ -44,8 +46,48 @@ public function delete($id, $product_id) {
 public function show($id) {
 
     $list= List_::findOrFail($id);
-    return $list->products;
+    $shop_id = $list->shop_id;
 
+    //Lista posiada przypisany sklep wraz z kategoriami
+    if($shop_id && count($list->shop->shopCategories))
+    {
+        $shop = Shop::find($shop_id);
+
+        $categories = $shop->shopCategories()->orderBy('order_position', 'asc')->get();
+        $count = count($categories);
+
+        foreach ($categories as $category)
+                $category->products = $category->products;
+
+
+        //przypisanie produktow bez kategorii    
+        if(count($list->products->where('shop_category_id', null)))
+        {
+            $uncategorized = new shopCategory();
+            $uncategorized -> id = null;
+            $uncategorized -> order_position = $count+1;
+            $uncategorized -> name = "Nieskategoryzowane";
+            $uncategorized -> shop_id = null;
+            $uncategorized -> created_at = now();
+            $uncategorized -> updated_at = now();
+            $uncategorized -> products = [];
+
+            $arr = [];
+            foreach($list->products->where('shop_category_id', null) as $product)
+            {
+                $arr[] = $product;
+            }
+            $uncategorized-> products = $arr;
+        }
+
+       if(!empty($uncategorized)) 
+            $categories[] = $uncategorized;
+
+       return $categories;
+
+    }
+    else return $list->products; //bez kategorii
+    
 
 }
 
