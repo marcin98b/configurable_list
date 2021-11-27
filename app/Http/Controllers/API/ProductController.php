@@ -48,45 +48,51 @@ public function show($id) {
     $list= List_::findOrFail($id);
     $shop_id = $list->shop_id;
 
+
+    //przypisanie produktow bez kategorii    
+    if(count($list->products->where('shop_category_id', null)))
+    {
+        $uncategorized = new shopCategory();
+        $uncategorized -> id = null;
+        $uncategorized -> order_position = null;
+        $uncategorized -> name = "Nieskategoryzowane";
+        $uncategorized -> shop_id = null;
+        $uncategorized -> created_at = now();
+        $uncategorized -> updated_at = now();
+        $uncategorized -> products = [];
+
+        $arr = [];
+        foreach($list->products->where('shop_category_id', null) as $product)
+        {
+            $arr[] = $product;
+        }
+        $uncategorized-> products = $arr;
+    }
+
+
     //Lista posiada przypisany sklep wraz z kategoriami
     if($shop_id && count($list->shop->shopCategories))
     {
         $shop = Shop::find($shop_id);
-
         $categories = $shop->shopCategories()->orderBy('order_position', 'asc')->get();
         $count = count($categories);
 
+        //przypisanie produktow do kategorii
         foreach ($categories as $category)
                 $category->products = $category->products;
 
-
-        //przypisanie produktow bez kategorii    
-        if(count($list->products->where('shop_category_id', null)))
-        {
-            $uncategorized = new shopCategory();
-            $uncategorized -> id = null;
-            $uncategorized -> order_position = $count+1;
-            $uncategorized -> name = "Nieskategoryzowane";
-            $uncategorized -> shop_id = null;
-            $uncategorized -> created_at = now();
-            $uncategorized -> updated_at = now();
-            $uncategorized -> products = [];
-
-            $arr = [];
-            foreach($list->products->where('shop_category_id', null) as $product)
-            {
-                $arr[] = $product;
-            }
-            $uncategorized-> products = $arr;
-        }
-
+        //jesli sa produkty nieprzypisane dodaj je do kategorii "Nieprzypisane" bez id
        if(!empty($uncategorized)) 
+       {
+            $uncategorized->order_position = $count + 1;
             $categories[] = $uncategorized;
+       }
 
        return $categories;
 
     }
-    else return $list->products; //bez kategorii
+    else
+        return $uncategorized;
     
 
 }
