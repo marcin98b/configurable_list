@@ -79,7 +79,8 @@ public function show($id) {
 
         //przypisanie produktow do kategorii
         foreach ($categories as $category)
-                $category->products = $category->products;
+            $category -> products = $list->products()->where('shop_category_id', $category->id)->get();
+
 
         //jesli sa produkty nieprzypisane dodaj je do kategorii "Nieprzypisane" bez id
        if(!empty($uncategorized)) 
