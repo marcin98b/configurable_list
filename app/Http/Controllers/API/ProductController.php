@@ -48,19 +48,18 @@ public function show($id) {
     $list= List_::findOrFail($id);
     $shop_id = $list->shop_id;
 
+    $uncategorized = new shopCategory();
+    $uncategorized -> id = null;
+    $uncategorized -> order_position = null;
+    $uncategorized -> name = "Nieskategoryzowane";
+    $uncategorized -> shop_id = null;
+    $uncategorized -> created_at = now();
+    $uncategorized -> updated_at = now();
+    $uncategorized -> products = [];
 
     //przypisanie produktow bez kategorii    
     if(count($list->products->where('shop_category_id', null)))
     {
-        $uncategorized = new shopCategory();
-        $uncategorized -> id = null;
-        $uncategorized -> order_position = null;
-        $uncategorized -> name = "Nieskategoryzowane";
-        $uncategorized -> shop_id = null;
-        $uncategorized -> created_at = now();
-        $uncategorized -> updated_at = now();
-        $uncategorized -> products = [];
-
         $arr = [];
         foreach($list->products->where('shop_category_id', null) as $product)
         {
@@ -92,8 +91,8 @@ public function show($id) {
        return $categories;
 
     }
-    else
-        return $uncategorized;
+       
+    return $uncategorized;
     
 
 }
