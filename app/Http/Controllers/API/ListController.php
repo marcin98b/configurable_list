@@ -147,11 +147,23 @@ class ListController extends Controller
 
     public function update(Request $request, $id) {
 
-        $list = List_::find($id);
-        if($request->input('share')) $list -> share_key = Str::random(16);
+        $list=List_::find($id);
+        if(request('name')) $list -> name = request('name');
+        if(request('shop_id') == null || request('shop_id') != $list->shop_id) 
+        {
+            $list -> shop_id = request('shop_id');
+            $products = $list -> products()->get();
+            foreach($products as $product)
+            {
+                $product->shop_category_id = null;
+                $product->save();
+            }
+        }
+        //else $list -> shop_id = null;
+        if(request('share')) $list -> share_key = Str::random(16);
         //else $list -> share_key = null;
-        $list -> update($request->all());
-        return $list;
+
+        return $list -> save();
     }
 
 
