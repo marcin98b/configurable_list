@@ -168,12 +168,16 @@ class ListController extends Controller
     public function create() {
     
         $list = new List_();
+        if(request('shop_id')) $list -> shop_id = request('shop_id');
         $list -> name = request('name');
         $list -> user_id = Auth::user()->id;
         $list->save();
 
-        return redirect('dashboard')
-        ->with('message', 'Pomyślnie dodano nową listę!');
+        if(!request('shop_id'))
+            return redirect('dashboard')->with('message', 'Pomyślnie dodano nową listę!');
+        else
+            return redirect(route('shopShow', request('shop_id') ))->with('message', 'Pomyślnie dodano listę do sklepu!');           
+
 
     }
 
@@ -189,8 +193,10 @@ class ListController extends Controller
         else 
         {
             $list -> delete();
-            return redirect('dashboard')
-            ->with('message', 'Pomyślnie usunięto listę!');
+            if(request('shop_id'))
+                return redirect(route('shopShow', request('shop_id') ))->with('message', 'Pomyślnie usunięto listę!');           
+            else
+                return redirect('dashboard')->with('message', 'Pomyślnie usunięto listę!');
         }
     }
 
@@ -244,8 +250,12 @@ class ListController extends Controller
             $newProduct -> save();
         }
 
-        return redirect('dashboard')
-        ->with('message', 'Pomyślnie zduplikowano listę "'.$newList->name.'"');
+        if(request('shop_id'))
+            return redirect(route('shopShow', request('shop_id') ))->with('message', 'Pomyślnie zduplikowano listę "'.$newList->name.'"');           
+        else
+            return redirect('dashboard')
+            ->with('message', 'Pomyślnie zduplikowano listę "'.$newList->name.'"');
+
 
     }
 

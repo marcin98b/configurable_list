@@ -98,9 +98,11 @@
               </form>
 
             <form action="{{route('listShow', $list->id)}}">    
+              <button onclick="window.location='{{ URL::previous() }}'"> 
               <x-button class="ml-2 flex text-center mt-4">
                   {{ __('Powrót') }}
               </x-button>
+            </button>
             </form>
 
 </div>
