@@ -87,7 +87,7 @@
           <div class="flex items-center justify-center mt-4">
                  
 
-                <x-button onclick="getOrder()" class="flex text-center mt-4 bg-yellow-500 hover:bg-yellow-600">
+                <x-button onclick="getOrder()" class="flex text-center mt-4 bg-green-500 hover:bg-green-600">
                     {{ __('Edytuj kolejność') }}
                 </x-button>
 

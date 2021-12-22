@@ -48,14 +48,16 @@
                     <div class="clearfix h-36 sm:h-24 p-4 width-100 bg-white border-b border-gray-200">
                         <div class="float-left">
                             <h1 class="text-lg">
-                                <a class="hover:text-blue-700" href = "{{route('listShow', $list->id)}}">
-                                    @if (is_null($list->name))
-                                    {{ __('<brak nazwy>') }}
-                                    @else
-                                        {{$list->name}}
-                                    @endif
-                                </a>
-                                
+                                <form action="{{route('listShow', $list->id)}}" method="GET">
+                                    <input type="hidden" name="shopView" value="true"/>
+                                    <button type="submit" class="focus:outline-none hover:text-blue-700">
+                                        @if (is_null($list->name))
+                                        {{ __('<brak nazwy>') }}
+                                        @else
+                                            {{$list->name}}
+                                        @endif
+                                        </button>
+                                </form>
                             </h1>
                             <p class="text-xs text-gray-400	">Data utworzenia: {{$list->created_at}}</p>
                             <p class="text-xs text-gray-400	">Zaznaczone produkty: 

@@ -261,8 +261,13 @@
 
 </form>
 
-<form action="{{route('dashboard')}}">   
-
+<form 
+    @if(!$shopView)
+        action="{{route('dashboard')}}"
+    @else
+        action="{{route('shopShow', $list->shop_id )}}"
+    @endif
+>   
 <x-button class="ml-2">
     {{ __('Powrót') }}
 </x-button>

@@ -52,9 +52,10 @@ class ListController extends Controller
             return redirect('dashboard');
         }
         else {
-
+            $shopView = request('shopView');
             return view('list.show', [
                 'list' => $list,
+                'shopView' =>$shopView
                 ]);
         }
 
