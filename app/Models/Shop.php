@@ -16,30 +16,19 @@ class Shop extends Model
 
     ];
 
-    /**
-     * user-shops (1-n) relationship
-     */
+    //user-shops (1-n) relationship
     public function user() {
-
         return $this->belongsTo(User::class);
     }
 
-    /*
-    * shop-lists (1-n) relationship
-    */
+    //shop-lists (1-n) relationship
     public function lists() {
-
         return $this->hasMany(List_::class);
     }
 
-
-    /**
-     * shop - shopCategories (1-n) relationship
-     */
+    //shop - shopCategories (1-n) relationship
     public function shopCategories() {
-
         return $this->hasMany(shopCategory::class);
     }
-
 
 }

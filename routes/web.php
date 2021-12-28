@@ -18,10 +18,12 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::group(['middleware' => ['auth']], function() {
+
 //Listy
 //-----------------------------------------------------------------------------
 
-Route::GET('/dashboard', [ListController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::GET('/dashboard', [ListController::class, 'index'])->name('dashboard');
 Route::POST('/lists/create', [ListController::class, 'create'])->name('listCreate');
 Route::POST('/lists/{id}/duplicate', [ListController::class, 'duplicate'])->name('listDuplicate');
 Route::GET('/lists/shared/{share_key}', [ListController::class, 'showShared'])->name('listSharedView');
@@ -78,9 +80,7 @@ Route::POST('/customProducts/{id}/edit/upload' , [CustomProductController::class
 Route::GET('/customProducts/shared/{share_key}', [CustomProductController::class, 'showShared'])->name('customProductSharedView');
 Route::POST('/customProducts/shared/{share_key}', [CustomProductController::class, 'createShared'])->name('customProductCreateShared'); 
 
-// TO_DO
-// SORTOWANIE
-// - sortowanie produktow/list/sklepow
+});
 
 
 require __DIR__.'/auth.php';

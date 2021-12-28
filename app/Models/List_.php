@@ -17,39 +17,24 @@ class List_ extends Model
         'share_key'
 
     ];
-    /**
-     * user-lists (1-n) relationship
-     */
+
+    //user-lists (1-n) relationship
     public function user() {
 
         return $this->belongsTo(User::class);
     }
 
-    /*
-    * shop-lists (1-n) relationship
-    */
+    //shop-lists (1-n) relationship
     public function shop() {
 
         return $this->belongsTo(Shop::class);
     }
 
-    /*
-    * list-listCategories (1-n) relationship
-    */
-    // public function listCategories() {
-
-    //     return $this->hasMany(listCategory::class, 'list_id');
-    // }
-
-    /*
-    * list-products (1-n) relationship
-    */
-
+    //user-products (1-n) relationship
     public function products() {
 
         return $this->hasMany(Product::class, 'list_id');
     }
 
-    
 }
 
