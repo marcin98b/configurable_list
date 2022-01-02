@@ -67,12 +67,12 @@
             
             <div class="flex items-center justify-center mt-4">
                
-                    <form action="{{route('customProductsEditView', $customProduct->id)}}">
+                    {{-- <form action="{{route('customProductsEditView', $customProduct->id)}}">
                             <x-button class="bg-yellow-500 hover:bg-yellow-600 flex text-center mt-4">
                                 {{ __('Edytuj') }}
                             </x-button>
 
-                        </form>
+                        </form> --}}
 
                     <form action="{{route('customProductsIndex')}}">          
                        <x-button class="ml-2 flex text-center mt-4">

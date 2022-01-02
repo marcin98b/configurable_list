@@ -74,7 +74,7 @@ class ShopController extends Controller
     
         $shop=Shop::find($id);
         $shop -> name = request('name');
-        $shop -> shop_id = request('shop_id');
+        //$shop -> shop_id = request('shop_id');
         $shop -> save();
 
         return view('shop.show', [

@@ -51,7 +51,12 @@
             </div>
 
             <div class="container max-w-7xl mx-auto ">
-
+              @if ($shopCategories->isEmpty())
+                
+              <div class="p-6 width-100 bg-white border-b border-gray-200">
+                  Brak zdefiniowanych kategorii
+              </div>
+              @endif
                 @foreach ($shopCategories->sortBy('order_position') as $shopCategory)
                      
                     <div id="{{$shopCategory->id}}" class="draggable" draggable="true">

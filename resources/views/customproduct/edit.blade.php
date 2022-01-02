@@ -83,7 +83,7 @@
 
                   </form>
 
-                <form action="{{route('customProductsShow', $customProduct->id)}}">    
+                <form action="{{route('customProductsIndex')}}">    
                   <x-button class="ml-2 flex text-center mt-4">
                       {{ __('Powrót') }}
                   </x-button>

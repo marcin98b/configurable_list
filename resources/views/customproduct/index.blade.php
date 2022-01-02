@@ -75,7 +75,27 @@
                            </div>
                      </div>
 
-                      <div class="w-16 flex-none">
+                     <div class="float-right pr-4 py-12">
+                        <form style="margin:0px; padding:0px; display:inline;" action="{{route('customProductsEditView', $customProduct->id)}}" method="POST">
+                            @csrf
+                            @method('GET')
+                                <button 
+                                class="py-1 px-3 rounded bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                                    Edytuj
+                                </button>
+                        </form>  
+
+                        <form style="margin:0px; padding:0px; display:inline;" action="{{route('customProductsDelete', $customProduct->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                                <button onclick="return confirm('Potwierdź usunięcie produktu')" 
+                                class="py-1 px-3 rounded bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 cursor-pointer">
+                                    Usuń
+                                </button>
+                        </form>
+                
+                     </div>                    
+                      {{-- <div class="w-16 flex-none">
                         <form style="margin:0px; padding:0px; display:inline;" action="{{route('customProductsDelete', $customProduct->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -84,7 +104,7 @@
                                     X
                                 </button>
                         </form>
-                     </div>
+                     </div> --}}
                     </div>
 
                 
