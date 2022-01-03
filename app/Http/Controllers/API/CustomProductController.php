@@ -45,7 +45,10 @@ class CustomProductController extends Controller
     public function show($id){
 
         $customProduct = customProduct::FindOrFail($id);
-        return $customProduct;
+     
+        if($customProduct->user_id != Auth::user()->id) 
+            return $customProduct;
+        else return null;
 
     }
  

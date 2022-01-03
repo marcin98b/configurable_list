@@ -27,7 +27,7 @@
 
             <div class="grid justify-items-center">
 
-                <div class="overflow-hidden border w-full lg:w-8/12 md:w-11/12 bg-white mx-3 md:mx-0 lg:mx-0">
+                <div class="overflow-hidden border w-7/12 bg-white mx-3 ">
                     @if($customProduct->img_filepath)
                     <img class="border-2 w-full h-50 bg-cover" src="/storage/{{$customProduct->img_filepath}}">
                     @else
@@ -65,7 +65,7 @@
      
 
             
-            <div class="flex items-center justify-center mt-4">
+            <div class="flex items-center justify-center">
                
                     {{-- <form action="{{route('customProductsEditView', $customProduct->id)}}">
                             <x-button class="bg-yellow-500 hover:bg-yellow-600 flex text-center mt-4">
@@ -75,7 +75,7 @@
                         </form> --}}
 
                     <form action="{{route('customProductsIndex')}}">          
-                       <x-button class="ml-2 flex text-center mt-4">
+                       <x-button class="flex text-center">
                         {{ __('Powrót') }}
                     </x-button>
                 </form>

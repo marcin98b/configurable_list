@@ -48,13 +48,15 @@ class CustomProductController extends Controller
     public function show($id){
 
         $customProduct = customProduct::FindOrFail($id);
+     
+        if($customProduct->user_id != Auth::user()->id) 
+            return redirect('dashboard');
+        else
+            return view('customproduct.show', [
 
+                'customProduct' => $customProduct,
 
-        return view('customproduct.show', [
-
-            'customProduct' => $customProduct,
-
-        ]);
+            ]);
 
     }
     public function editView($id) {

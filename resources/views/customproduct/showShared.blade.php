@@ -39,7 +39,7 @@
 
             <div class="grid justify-items-center">
 
-                <div class="overflow-hidden border w-full lg:w-8/12 md:w-11/12 bg-white mx-3 md:mx-0 lg:mx-0">
+                <div class="overflow-hidden border w-7/12 bg-white mx-3 md:mx-0 lg:mx-0">
                     @if($customProduct->img_filepath)
                     <img class="border-2 w-full h-50 bg-cover" src="/storage/{{$customProduct->img_filepath}}">
                     @else
