@@ -45,20 +45,22 @@ class CustomProductController extends Controller
 
 
     
-    public function show($id){
+public function show($id){
 
-        $customProduct = customProduct::FindOrFail($id);
-     
-        if($customProduct->user_id != Auth::user()->id) 
-            return redirect('dashboard');
-        else
-            return view('customproduct.show', [
+    //pobranie produktu niestandardowego o danym $id za pomocą metody FindOrFail, korzystając z modelu customProduct
+    $customProduct = customProduct::FindOrFail($id);
+    
+    //sprawdzenie, czy użytkownik przesyłający żądanie do kontrolera jest jego właścicielem, jeśli tak zwrócony jest widok karty produktu wraz ze zmienną tego produktu
+    if($customProduct->user_id != Auth::user()->id) 
+        return redirect('dashboard');
+    else
+        return view('customproduct.show', [
 
-                'customProduct' => $customProduct,
+            'customProduct' => $customProduct,
 
-            ]);
+        ]);
 
-    }
+}
     public function editView($id) {
     
         $customProduct = customProduct::FindOrFail($id);

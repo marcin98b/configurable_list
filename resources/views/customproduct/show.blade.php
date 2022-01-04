@@ -25,33 +25,33 @@
             @endif
 
 
-            <div class="grid justify-items-center">
+<div class="grid justify-items-center">
 
-                <div class="overflow-hidden border w-7/12 bg-white mx-3 ">
-                    @if($customProduct->img_filepath)
-                    <img class="border-2 w-full h-50 bg-cover" src="/storage/{{$customProduct->img_filepath}}">
-                    @else
-                      <img class="border-2 w-full h-50 bg-cover" src="https://via.placeholder.com/1024x768.png?text=Brak+zdjecia">
-                    @endif
-                    
-                    <div class="border-2 px-3 pb-2">
-                     <div class="text-center pt-2">
-                            <span class="text-lg font-medium">{{$customProduct->name}}</span>
-                     </div>
-                    <div class="pt-1">
-                        <span class="text-sm text-gray-400 font-medium">Opis:</span>
-                    </div>
-                    
-                    <div class="pt-1">
-                        <div class="mb-2 text-sm text-justify	">
-                        {{$customProduct->description ?? 'brak' }}
-                        </div>
-                    </div>
-
-                    </div>
-                </div>
-
+    <div class="overflow-hidden border w-9/12 bg-white mx-3 ">
+        @if($customProduct->img_filepath)
+            <img class="border-2 w-full h-50 bg-cover" src="/storage/{{$customProduct->img_filepath}}">
+        @else
+            <img class="border-2 w-full h-50 bg-cover" src="https://via.placeholder.com/1024x768.png?text=Brak+zdjecia">
+        @endif
+        
+        <div class="border-2 px-3 pb-2">
+            <div class="text-center pt-2">
+                <span class="text-lg font-medium">{{$customProduct->name}}</span>
             </div>
+        <div class="pt-1">
+            <span class="text-sm text-gray-400 font-medium">Opis:</span>
+        </div>
+        
+        <div class="pt-1">
+            <div class="mb-2 text-sm text-justify	">
+            {{$customProduct->description ?? 'brak' }}
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+</div>
 
 
 

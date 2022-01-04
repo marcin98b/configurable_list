@@ -46,7 +46,7 @@ class CustomProductController extends Controller
 
         $customProduct = customProduct::FindOrFail($id);
      
-        if($customProduct->user_id != Auth::user()->id) 
+        if($customProduct->user_id == Auth::user()->id) 
             return $customProduct;
         else return null;
 
