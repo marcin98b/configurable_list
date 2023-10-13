@@ -1,63 +1,815 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Configurable shopping list (WEB version)
+- The application allows you to create shopping lists in which you can add products according to a predetermined category order for the store.
+- Additionally, it is possible to define custom products, so that they will always be available at hand when creating new lists.
+- In addition to the basic functionality, it is also possible to share your lists or custom products between users.
+- [Mobile app](https://github.com/marcin98b/configurable_list_native)
+<img src="https://github.com/marcin98b/configurable_list/assets/65306120/0e27751b-ace0-412e-bdbe-b2ae095bdb17)" width="500" height="400">
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Installation
+1. Clone repo
+```
+git clone https://github.com/marcin98b/configurable_list.git configurable_list
+cd configurable_list
+```
+2. Install Laravel app using Composer
+```
+composer install
+```
+3. Create .env file and fill variables (DB connection etc.) using editor
+```
+cp .env.example .env
+nano .env
+```
+4. Generate application key
+```
+php artisan key:generate
+```
+5. Install frontend packages using npm
+```
+npm install
+```
+6. Setup storage link for file uploads
+```
+php artisan storage:link
+sudo chmod o+w ./storage/ -R
+```
+8. Run migrations, create dev build using npm and run.
+```
+php artisan migrate:fresh
+npm run dev
+php artisan serve
+```
 
-## About Laravel
+## RESTful API Endpoints
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" width="662" style="width:496.85pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;height:31.2pt">
+  <td width="80" style="width:59.7pt;border:solid windowtext 1.0pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Nagwektabeli">Function</p>
+  </td>
+  <td width="55" style="width:41.35pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Nagwektabeli">HTTP Method</p>
+  </td>
+  <td width="299" style="width:224.45pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Nagwektabeli">URL Resource</p>
+  </td>
+  <td width="228" style="width:171.35pt;border:solid windowtext 1.0pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Nagwektabeli">Description</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:1;height:31.2pt">
+  <td width="80" rowspan="3" valign="top" style="width:59.7pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Authorization (guest)</p>
+  </td>
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/register</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">User registration.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:2;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/login</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">User login.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:3;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/<span class="SpellE">logout</span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">User logout.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:4;height:31.2pt">
+  <td width="80" rowspan="8" valign="top" style="width:59.7pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Lists management</p>
+  </td>
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/lists</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Getting all user lists.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:5;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/lists/<span class="SpellE">create</span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Create a new list with a given name.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:6;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/lists/{id}/<span class="SpellE">duplicate</span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Duplication of list of given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:7;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/lists/{id}</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Downloading a single list with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:8;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">PUT</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/lists/{id}</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Edit the data fields of the list with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:9;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">DEL</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/lists/{id}</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Delete the list with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:10;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/lists/shared/{share_key}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Downloading a shared list by another user, having the identifier {share_key}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:11;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/lists/shared/{share_key}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Adding a new list based on a list shared by another user, having the identifier {share_key}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:12;height:31.2pt">
+  <td width="80" rowspan="6" valign="top" style="width:59.7pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Shops management</p>
+  </td>
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/shops</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Getting all user stores.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:13;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/shops/<span class="SpellE">create</span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Create a new store with a given name.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:14;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/shops/{id}</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Getting a store with a given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:15;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/shops/{id}/lists<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Getting lists assigned to a store with a given
+  {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:16;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">PUT</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/shops/{id}</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Edit the data fields of a store with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:17;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">DEL</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/shops/{id}</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Deleting a store with a given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:18;height:31.2pt">
+  <td width="80" rowspan="5" valign="top" style="width:59.7pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Shops category management</p>
+  </td>
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/shops/{id}/categories<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Getting the categories of the store with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:19;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/shops/{id}/categories/create<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Creation of a new category, assigned to a store
+  with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:20;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">PUT</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/shops/{id}/categories/{<span class="SpellE">category_id</span>}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Edit the data fields of a category with data {<span class="SpellE">category_id</span>}, assigned to a store with data {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:21;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">DEL</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/shops/{id}/categories/{<span class="SpellE">category_id</span>}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Delete a category with given {<span class="SpellE">category_id</span>},
+  assigned to a store with given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:22;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/shops/{id}/categories/<span class="SpellE">updatePosition</span>/{<span class="SpellE">arr</span>}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Edit the order of categories in a store with a given {<span class="SpellE">shop_id</span>} based on the order of {<span class="SpellE">arr</span>}
+  (a sequence of consecutive category id separated by a comma).</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:23;height:31.2pt">
+  <td width="80" rowspan="4" valign="top" style="width:59.7pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Products management (in lists)</p>
+  </td>
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/lists/{id}/products</p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Download all products created in the list
+  with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:24;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/lists/{id}/<span class="SpellE">addproduct</span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Create a new product in the list with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:25;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">PUT</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/lists/{id}/products/{<span class="SpellE">product_id</span>}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Edit the data fields of a product with data {<span class="SpellE">product_id</span>}, assigned to a list with data {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:26;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">DEL</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/lists/{id}/products/{<span class="SpellE">product_id</span>}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Removal of a product with given {<span class="SpellE">product_id</span>}.
+  in the list with given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:27;height:31.2pt">
+  <td width="80" rowspan="8" valign="top" style="width:59.7pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Custom products management.</p>
+  </td>
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/<span class="SpellE">customProducts</span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Download all custom products of user.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:28;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">/<span class="SpellE">api</span>/<span class="SpellE">customProducts</span>/<span class="SpellE">create</span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Creation of a new custom product.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:29;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/<span class="SpellE">customProducts</span>/{id}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Getting a custom product with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:30;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">DEL</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/<span class="SpellE">customProducts</span>/{id}</span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Delete a custom product with the given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:31;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">PUT</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/<span class="SpellE">customProducts</span>/{id}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Edit the data fields of a custom product with
+  given {id}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:32;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/<span class="SpellE">customProducts</span>/{id}/upload<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Uploading a custom product image with
+  given {id} to the server.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:33;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">GET</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/<span class="SpellE">customProducts</span>/shared/{<span class="SpellE">custom_share_key</span>}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Getting a custom product provided by another user, having the identifier {<span class="SpellE">custom_share_key</span>}.</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:34;mso-yfti-lastrow:yes;height:31.2pt">
+  <td width="55" style="width:41.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">POST</p>
+  </td>
+  <td width="299" style="width:224.45pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli"><span lang="EN-US" style="mso-ansi-language:EN-US">/<span class="SpellE">api</span>/<span class="SpellE">customProducts</span>/shared/{<span class="SpellE">custom_share_key</span>}<o:p></o:p></span></p>
+  </td>
+  <td width="228" style="width:171.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:31.2pt">
+  <p class="Danatekstowatabeli">Adding a new custom product shared by another user, having the identifier {<span class="SpellE">custom_share_key</span>}.</p>
+  </td>
+ </tr>
+</tbody></table>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Detailed description of endpoint structure: https://documenter.getpostman.com/view/15594587/Tzeah5JW
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Screenshots 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<h4>Authorization</h4>
 
-## Learning Laravel
+![image](https://github.com/marcin98b/configurable_list/assets/65306120/70e26ae3-3b19-4aff-bfc9-5f99061f17d1)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<h4>Shopping lists view</h4>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![image](https://github.com/marcin98b/configurable_list/assets/65306120/94af9b9c-ec58-46a7-af67-e29677a4b71b)
 
-## Laravel Sponsors
+<h4>Products in shopping list</h4>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![image](https://github.com/marcin98b/configurable_list/assets/65306120/34351dbb-2e71-43f3-8731-cf5f4b46a8b3)
 
-### Premium Partners
+<h4>Stores view</h4>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+![image](https://github.com/marcin98b/configurable_list/assets/65306120/4263fba9-e792-40a7-9168-0812473fcffe)
 
-## Contributing
+<h4>Store category ordering (drag&drop)</h4>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![image](https://github.com/marcin98b/configurable_list/assets/65306120/3c2c4cb5-5b98-4022-8c5b-3db3fdc388f4)
 
-## Code of Conduct
+<h4>Custom products for lists</h4>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![image](https://github.com/marcin98b/configurable_list/assets/65306120/d1048b7c-4827-4b79-838d-786d0036476c)
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# configurable_list" 
